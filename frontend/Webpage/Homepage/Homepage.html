@@ -1,0 +1,302 @@
+<!-- Organized Homepage.html (Option A style: Section Labels, No Code Changes) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ===================== META & TITLE ===================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===================== STYLESHEETS ===================== -->
+    <link rel="stylesheet" href="Homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>InstaNyaw</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ===================== NAVIGATION BAR ===================== -->
+        <nav>
+            <div class="nav-left">
+                <div class="logo" onclick="window.location.href='Homepage.html'">
+                    <img src="instanyaw.png" alt="">
+                    <p>InstaNyaw</p>
+                </div>
+                <button id="adminDashboardBtn" class="admin-btn" style="display: none;">Admin Dashboard</button>
+            </div>
+
+            <button id="adminDashboardBtn" class="admin-btn" style="display: none;">
+  Admin Dashboard
+</button>
+
+
+            <div class="nav-center">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="userSearchInput" placeholder="Search users...">
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
+            <div class="nav-right">
+              
+                <!-- 💬 MESSAGE -->
+                <div class="nav-item">
+                    <i class="fa-solid fa-message" id="msgIcon"></i>
+                    <span id="msgBadge" class="msg-badge">0</span>
+
+                    
+                </div>
+
+                <!-- 🔔 NOTIFICATION -->
+                <div class="nav-item">
+                    <i class="fa-solid fa-bell" id="notifIcon"></i>
+                    <span id="notifBadge">0</span>
+                    <div class="dropdown-bubble" id="notifDropdown">
+                        <p>No new notification</p>
+                    </div>
+                </div>
+
+                <!-- 👤 PROFILE -->
+                <div class="profile-menu">
+                    <div class="nav-user-info" id="navUserProfile">
+                        <span id="navUsername">User</span>
+                        <div class="nav-tags">
+                         <span id="navRoleTag" class="nav-tag"></span>
+                          <span id="navDeptTag" class="nav-tag"></span></div>             
+                        <img src="final_icon-removebg-preview.png" alt="Profile" class="nav-profile" id="profileIcon">
+                    </div>
+
+                    <div class="dropdown" id="profileDropdown">
+                        <div class="dropdown-header" onclick="window.location.href='../Profile/profile.html'">
+                            <i class="fa-solid fa-user"></i>
+                            <span>View Profile</span>
+                        </div>
+                        <hr>
+                        <div class="dropdown-item" id="logoutBtn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ===================== MAIN LAYOUT ===================== -->
+        <div class="main">
+
+            <!-- ===== LEFT SIDEBAR ===== -->
+            <div class="main-left">
+                <div class="img" id="homeBtn">
+                    <img src="home-removebg-preview.png" alt="">
+                    <p>Home</p>
+                </div>
+                <div class="img" id="birthdayBtn">
+                    <img src="birthday-removebg-preview.png" alt="">
+                    <p>Birthday Greetings</p>
+                </div>
+                <div class="img" id="announcementBtn">
+                    <img src="announcement-removebg-preview.png" alt="">
+                    <p>Announcement</p>
+                </div>
+                <div class="img" id="newsBtn">
+                    <img src="news-removebg-preview.png" alt="">
+                    <p>School News</p>
+                </div>
+                <div class="img" id="lostBtn">
+                    <img src="lost-removebg-preview.png" alt="">
+                    <p>Lost and Found</p>
+                </div>
+            </div>
+
+            <!-- ===== CENTER CONTENT ===== -->
+            <div class="main-center" id="mainCenter">
+                <h2 id="pageTitle">Home</h2>
+                <div class="create-post">
+                   <div class="ptop">
+  <img id="postBarAvatar" src="final_icon-removebg-preview.png" class="birthday-avatar">
+  <input type="text" placeholder="What's on your mind?" id="openPostModal" data-page="${pageType}" readonly>
+</div>
+
+                </div>
+            </div>
+
+            <!-- ===== RIGHT SIDEBAR ===== -->
+            <div class="main-right">
+                <div class="pages-section">
+                </div>
+        </div>
+
+        <!-- ===================== CREATE POST MODAL ===================== -->
+    
+<!-- HOME POST MODAL -->
+    <div class="create-post-modal" id="homePostModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create Post</h2>
+          <i class="fa-solid fa-xmark close-btn" onclick="closeHomeModal()"></i>
+        </div>
+        <div class="modal-user">
+          <img src="final_icon-removebg-preview.png" alt="" id="homeModalAvatar" />
+          <p id="homeModalName">User</p>
+        </div>
+        <textarea id="homePostMessage" placeholder="What's on your mind?"></textarea>
+<div class="post-options">
+  <i class="fa-regular fa-image" id="homeImageIcon"></i>
+  <input type="file" id="homeFileInput" accept="image/*,video/*" multiple style="display:none;" />
+</div>
+<div id="homePreviewContainer" class="media-preview" style="display:none;"></div>
+
+        <button class="post-btn" id="homePostBtn">Post</button>
+      </div>
+    </div>
+
+
+    <!-- BIRTHDAY POST MODAL -->
+    <div class="create-post-modal" id="birthdayPostModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Birthday Greeting 🎉</h2>
+          <i class="fa-solid fa-xmark close-btn" onclick="closeBirthdayModal()"></i>
+        </div>
+        <div class="modal-user">
+          <img src="final_icon-removebg-preview.png" alt="" id="birthdayModalAvatar" />
+          <p id="birthdayModalName">User</p>
+        </div>
+
+        <input id="birthdayRecipient" placeholder="Recipient username (@username)" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ccc;" />
+        <textarea id="birthdayPostMessage" placeholder="Write a birthday message..."></textarea>
+
+ <div class="post-options">
+  <i class="fa-regular fa-image" id="birthdayImageIcon"></i>
+  <input type="file" id="birthdayFileInput" accept="image/*,video/*" multiple style="display:none;" />
+</div>
+<div id="birthdayPreviewContainer" class="media-preview" style="display:none;"></div>
+
+        <button class="post-btn" id="birthdayPostBtn">Post</button>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENT POST MODAL -->
+    <div class="create-post-modal" id="announcementPostModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create Announcement 📢</h2>
+          <i class="fa-solid fa-xmark close-btn" onclick="closeAnnouncementModal()"></i>
+        </div>
+        <div class="modal-user">
+          <img src="final_icon-removebg-preview.png" alt="" id="announceModalAvatar" />
+          <p id="announceModalName">User</p>
+        </div>
+
+        <input id="announceTitle" placeholder="Announcement title" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ccc;" />
+        <textarea id="announceMessage" placeholder="Write your announcement..."></textarea>
+
+<div class="post-options">
+  <i class="fa-regular fa-image" id="announceImageIcon"></i>
+  <input type="file" id="announceFileInput" accept="image/*,video/*" multiple style="display:none;" />
+</div>
+<div id="announcePreviewContainer" class="media-preview" style="display:none;"></div>
+
+        <button class="post-btn" id="announcePostBtn">Post</button>
+      </div>
+    </div>
+
+    <!-- NEWS POST MODAL -->
+    <div class="create-post-modal" id="newsPostModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Post School News 📰</h2>
+          <i class="fa-solid fa-xmark close-btn" onclick="closeNewsModal()"></i>
+        </div>
+        <div class="modal-user">
+          <img src="final_icon-removebg-preview.png" alt="" id="newsModalAvatar" />
+          <p id="newsModalName">User</p>
+        </div>
+
+        <input id="newsTitleInput" placeholder="News title" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ccc;" />
+        <textarea id="newsPostMessage" placeholder="Write school news..."></textarea>
+
+<div class="post-options">
+  <i class="fa-regular fa-image" id="newsImageIcon"></i>
+  <input type="file" id="newsFileInput" accept="image/*,video/*" multiple style="display:none;" />
+</div>
+<div id="newsPreviewContainer" class="media-preview" style="display:none;"></div>
+
+        <button class="post-btn" id="newsPostBtn">Post</button>
+      </div>
+    </div>
+
+    <!-- LOST & FOUND POST MODAL -->
+    <div class="create-post-modal" id="lostPostModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Lost & Found ⚠️</h2>
+          <i class="fa-solid fa-xmark close-btn" onclick="closeLostModal()"></i>
+        </div>
+        <div class="modal-user">
+          <img src="final_icon-removebg-preview.png" alt="" id="lostModalAvatar" />
+          <p id="lostModalName">User</p>
+        </div>
+
+        <input id="lostTitleInput" placeholder="Item title" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ccc;" />
+        <textarea id="lostPostMessage" placeholder="Describe the lost/found item..."></textarea>
+        <select id="lostStatusSelect" style="width:100%; padding:8px; margin-top:8px; border-radius:8px; border:1px solid #ccc;">
+          <option value="lost">🔎 Lost Item</option>
+          <option value="found">📦 Found Item</option>
+        </select>
+
+<div class="post-options">
+  <i class="fa-regular fa-image" id="lostImageIcon"></i>
+  <input type="file" id="lostFileInput" accept="image/*,video/*" multiple style="display:none;" />
+</div>
+<div id="lostPreviewContainer" class="media-preview" style="display:none;"></div>
+
+        <button class="post-btn" id="lostPostBtn">Post</button>
+      </div>
+    </div>
+
+    <!-- ============================
+     POST VIEW MODAL (CLICK FROM NOTIF)
+============================ -->
+<div id="viewPostModal" class="create-post-modal">
+  <div class="modal-content" style="width: 520px; max-height: 90vh; overflow-y: auto;">
+
+    <div class="modal-header">
+      <h2>Post</h2>
+      <i class="fa-solid fa-xmark close-btn" onclick="closeViewPostModal()"></i>
+    </div>
+
+    <div id="viewPostContainer"></div>
+
+  </div>
+</div>
+
+</div>
+    </div> <!-- END CONTAINER -->
+
+
+<!-- ============================
+     IMAGE VIEWER MODAL
+============================ -->
+<div id="imageViewer" class="image-viewer-modal">
+  <span class="image-viewer-close">&times;</span>
+
+  <img id="imageViewerImg" class="image-viewer-content">
+
+  <div class="image-arrow left" id="viewerPrev">&#10094;</div>
+  <div class="image-arrow right" id="viewerNext">&#10095;</div>
+</div>
+
+
+    <!-- ===================== SCRIPTS ===================== -->
+     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="Homepage.js"></script>
+    <script src="../shared/logout.js"></script>
+
+
+</body>
+</html>

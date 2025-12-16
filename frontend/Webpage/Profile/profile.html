@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - InstaNyaw</title>
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ===================== UNIFIED HOMEPAGE HEADER ===================== -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo" onclick="window.location.href='../Homepage/Homepage.html'">
+                <img src="instanyaw.png" alt="">
+                <p>InstaNyaw</p>
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search here">
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <!-- 💬 MESSAGE -->
+            <div class="nav-item">
+                <i class="fa-solid fa-message" id="msgIcon"></i>
+                <div class="dropdown-bubble" id="msgDropdown">
+                    <p>No new message</p>
+                    <a id="seeAllMessagesBtn" class="see-all-msg">See all messages</a>
+                </div>
+            </div>
+
+            <!-- 🔔 NOTIFICATION -->
+            <div class="nav-item">
+                <i class="fa-solid fa-bell" id="notifIcon"></i>
+                <div class="dropdown-bubble" id="notifDropdown">
+                    <p>No new notification</p>
+                </div>
+            </div>
+
+            <!-- 👤 PROFILE -->
+            <div class="profile-menu">
+                <div class="nav-user-info" id="navUserProfile">
+                    <span id="navUsername">User</span>
+
+                    <div class="nav-tags">
+                        <span id="navRoleTag" class="nav-tag"></span>
+                        <span id="navDeptTag" class="nav-tag"></span>
+                    </div>
+
+                    <img src="final_icon-removebg-preview.png"
+                         alt="Profile"
+                         class="nav-profile"
+                         id="profileIcon">
+                </div>
+
+                <div class="dropdown" id="profileDropdown">
+                    <div class="dropdown-header" onclick="window.location.href='profile.html'">
+                        <i class="fa-solid fa-user"></i>
+                        <span>View Profile</span>
+                    </div>
+                    <hr>
+                    <div class="dropdown-item" id="logoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== PROFILE SECTION ===================== -->
+    <section class="profile-section">
+
+        <div class="profile-header">
+            <div class="avatar-container">
+                <img src="/frontend/images/avatar.png" class="avatar" alt="Profile Avatar">
+                <div class="avatar-overlay">Change Profile</div>
+            </div>
+
+            <div class="info">
+                <h2>User</h2>
+
+                <div class="profile-tags">
+                    <span id="profileRoleTag" class="nav-tag"></span>
+                    <span id="profileDeptTag" class="nav-tag"></span>
+                </div>
+
+                <p><span>0</span> post &nbsp;</p>
+            </div>
+
+            <button class="edit-btn">Edit Profile</button>
+        </div>
+
+        <hr>
+
+        <h3 style="margin-bottom: 10px;">My Posts</h3>
+<div id="profilePosts"></div>
+
+
+        <!-- EDIT PROFILE MODAL -->
+        <div class="edit-modal" id="editModal">
+            <div class="edit-modal-content">
+                <h3>Edit Profile</h3>
+
+                <label>Username:</label>
+                <input type="text" id="usernameInput" placeholder="Enter new username">
+
+                <label>Bio / Description:</label>
+                <textarea id="bioInput" placeholder="Enter your bio..."></textarea>
+
+                <label>Change Password:</label>
+                <input type="password" id="passwordInput" placeholder="Enter new password">
+
+                <div class="modal-actions">
+                    <button id="saveBtn">Save</button>
+                    <button id="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <input type="file" id="profilePicInput" accept="image/*" style="display:none;">
+    </section>
+
+    <script src="profile.js"></script>
+    <script src="../../shared/logout.js"></script>
+
+</body>
+</html>

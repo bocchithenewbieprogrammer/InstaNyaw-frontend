@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('wave-bg.jpg') no-repeat center bottom fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container centers everything */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Landscape login box (desktop) */
+.login-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #003399, #ff6600);
+    border-radius: 20px;
+    padding: 40px;
+    width: 700px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+}
+
+/* Left: Logo */
+.login-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-left img {
+    width: 150px;
+    height: auto;
+}
+
+/* Right: Form */
+.login-right {
+    flex: 2;
+    padding-left: 30px;
+}
+
+.login-right h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Inputs */
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    background-color: #0044cc;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #003399;
+}
+
+.google-btn {
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.google-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Register text */
+.register-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-text a {
+    color: #ffffcc;
+    text-decoration: underline;
+}
+
+/* ===== MOBILE VERSION ===== */
+@media (max-width: 768px) {
+    body {
+        background-position: center;
+        background-size: cover;
+        padding: 20px;
+    }
+
+    .login-box {
+        flex-direction: column; /* Stack vertically */
+        width: 100%;
+        max-width: 360px;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .login-left {
+        margin-bottom: 20px;
+    }
+
+    .login-left img {
+        width: 100px;
+    }
+
+    .login-right {
+        padding-left: 0;
+    }
+
+    .login-right h3 {
+        font-size: 20px;
+    }
+
+    form input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn, .google-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

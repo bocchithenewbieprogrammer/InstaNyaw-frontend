@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+     <img src="instanyaw.png" class="nav-logo" id="homeLogo">
+      <h1>InstaNyaw</h1>
+    </div>
+    <div class="nav-right">
+<!-- PROFILE MENU WRAPPER -->
+<div class="profile-menu">
+    <div class="nav-user-info" id="navUserProfile">
+        <span id="navUsername">User</span>
+
+        <div class="nav-tags">
+            <span id="navRoleTag" class="nav-tag"></span>
+            <span id="navDeptTag" class="nav-tag"></span>
+        </div>
+
+        <img src="final_icon-removebg-preview.png"
+             alt="Profile"
+             class="nav-profile"
+             id="profileIcon">
+    </div>
+
+    <!-- DROPDOWN -->
+    <div class="dropdown" id="profileDropdown">
+        <div class="dropdown-header" onclick="window.location.href='../../Profile/profile.html'">
+            <i class="fa-solid fa-user"></i>
+            <span>View Profile</span>
+        </div>
+        <hr>
+        <div class="dropdown-item" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+</div>
+
+    </div>
+  </nav>
+
+  <div class="messenger">
+    <!-- Left Sidebar -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>Chats</h2>
+    <!-- NEW: create group button -->
+    <button id="newGroupBtn" class="new-group-btn">
+      <i class="fa-solid fa-users"></i>
+      <span>New Group</span>
+    </button>
+  </div>
+
+  <input type="text" id="chatSearch" placeholder="Search messages or users...">
+  <div id="searchResults" class="search-results"></div>
+
+  <!-- existing chat list -->
+  <div class="chat-list"></div>
+</div>
+
+
+    <!-- Chat Window -->
+    <div class="chat-window">
+      <div class="chat-header" id="chatHeader">
+        <img src="" alt="">
+        <div>
+          <h4></h4>
+          <p class="status"></p>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="message received"></div>
+      </div>
+      
+<div class="chat-input">
+  <input type="text" id="messageInput" placeholder="Write something...">
+  <button id="sendBtn">➤</button>
+
+  <!-- MEDIA UPLOAD -->
+  <input type="file" id="mediaInput" accept="image/*,video/*" hidden>
+  <label for="mediaInput" class="media-btn">
+    <i class="fa-solid fa-photo-film"></i>
+  </label>
+
+  <!-- FILE / DOCUMENT UPLOAD -->
+  <input type="file" id="fileInput"
+         accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip,.rar"
+         hidden>
+  <label for="fileInput" class="file-btn">
+    <i class="fa-solid fa-paperclip"></i>
+  </label>
+</div>
+    </div>
+
+<!-- Right Panel -->
+<div class="profile" id="profilePanel">
+  <!-- Group / User avatar (clickable for group avatar change) -->
+  <img id="profileAvatar" src="" alt="Profile">
+
+  <!-- Hidden input for changing group avatar -->
+  <input type="file" id="groupAvatarInput" accept="image/*" hidden>
+
+  <!-- Name (user or group) -->
+  <h3 id="profileName"></h3>
+
+  <!-- For users: department; for groups: “X members” -->
+  <p id="profileDepartment"></p>
+
+  <!-- Group actions (shown only for groups) -->
+  <div class="group-actions" id="groupActions">
+    <button id="groupEditNameBtn" class="group-action-btn">
+      <i class="fa-solid fa-pen"></i> Edit Group Name
+    </button>
+    <button id="groupAddMemberBtn" class="group-action-btn">
+      <i class="fa-solid fa-user-plus"></i> Add members
+    </button>
+    <button id="groupLeaveBtn" class="group-action-btn danger">
+      <i class="fa-solid fa-right-from-bracket"></i> Leave group
+    </button>
+  </div>
+
+  <!-- Optional extra actions for 1:1 chats -->
+  <div class="profile-actions">
+    <!-- Keep your delete chat button here if you want -->
+    <!-- <button id="deleteConversationBtn">Delete chat</button> -->
+  </div>
+
+  <!-- Members list (only visible for groups) -->
+  <h4 id="groupMembersTitle" class="group-members-title">Members</h4>
+  <div id="groupMembersList" class="group-members-list"></div>
+
+  <!-- 🔹 Tabs -->
+  <div class="profile-tabs">
+    <button class="profile-tab-btn active" data-tab="media">Media</button>
+    <button class="profile-tab-btn" data-tab="files">Files</button>
+  </div>
+
+  <!-- 🔹 Tab contents -->
+  <div id="sharedMedia"
+       class="media-grid tab-section tab-media active"
+       data-tab="media"></div>
+
+  <div id="sharedFiles"
+       class="files-list tab-section tab-files"
+       data-tab="files"></div>
+</div>
+
+<!-- NEW: Create Group Modal -->
+<div class="modal-overlay" id="groupModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Create Group Chat</h3>
+      <button class="modal-close" id="groupCancelBtn">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <label class="modal-label">Group name</label>
+      <input type="text" id="groupNameInput" class="modal-input" placeholder="Enter group name">
+
+      <label class="modal-label" style="margin-top:12px;">Add members</label>
+      <div class="modal-users-search">
+        <input type="text" id="groupUserSearch" class="modal-input" placeholder="Search users...">
+      </div>
+
+      <div id="groupUsersList" class="modal-users-list">
+        <!-- Filled by JS with checkboxes -->
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button id="groupCreateBtn" class="modal-primary-btn">
+        Create group
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MEMBERS MODAL -->
+<div class="modal-overlay" id="addMembersModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Add Members</h3>
+      <button class="modal-close" id="addMembersClose">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Search -->
+      <input 
+        type="text" 
+        id="addMembersSearch" 
+        class="modal-input" 
+        placeholder="Search users..."
+      />
+
+      <!-- User Result List -->
+      <div id="addMembersList" class="modal-users-list"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button id="addMembersSubmit" class="modal-primary-btn">
+        Add Members
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script src="http://localhost:5000/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+</body>
+
+</html>

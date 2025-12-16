@@ -1,0 +1,471 @@
+analysis.css
+/* ===== GLOBAL ===== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #2b2a2a;
+  color: #111827;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.header {
+  width: 100%;
+  height: 140px;
+  background: url("images/header.jpg") center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  z-index: 0;
+}
+
+.header-logo {
+  width: 90px;
+  margin-right: 15px;
+  z-index: 1;
+}
+
+.header-text {
+  text-align: left;
+  z-index: 1;
+}
+
+.header-text h1 {
+  color: #001f54;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header-text p {
+  font-size: 12px;
+  color: #333;
+  margin-top: 3px;
+}
+
+/* ========= MAIN LAYOUT GRID ========= */
+/* match Users page grid sizing */
+.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr 280px;
+  gap: 20px;
+  padding: 20px;
+}
+
+
+/* ========= SIDEBAR (COPIED FROM USER PAGE) ========= */
+/* ========= SIDEBAR (FIXED POSITION OF BOTTOM BUTTONS) ========= */
+.sidebar {
+  background: linear-gradient(180deg, #ff7b2c, #f7943d, #1c4ed8);
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+
+  /* FIX: Remove hard height */
+  /* height: 620px; */
+
+  /* NEW FIX */
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+.menu-label {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-item {
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.menu-item.active {
+  background: white;
+  color: #1e1e2d;
+  font-weight: 600;
+}
+
+.sidebar-bottom {
+    /* ← pulls buttons up */
+  padding: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.sidebar-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+}
+
+.sidebar-btn:hover {
+  background: #dcdfe4;
+}
+
+.sidebar-btn.logout {
+  background: #ffdddd;
+}
+
+.sidebar-btn.logout:hover {
+  background: #ffbaba;
+}
+
+/* ===== MAIN ANALYTICS CARD ===== */
+.main-card {
+  background: #2e2b3f;
+  padding: 25px;
+  border-radius: 20px;
+  color: #f9fafb;
+  min-height: 620px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Header row of analytics card */
+.analytics-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.analytics-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buttons & select (same look as other pages) */
+.filter-select {
+  border-radius: 999px;
+  padding: 7px 14px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  background: #111827;
+  color: #f9fafb;
+}
+
+.btn-primary {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary i {
+  margin-right: 6px;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #374151;
+  color: #e5e7eb;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-secondary i {
+  margin-right: 5px;
+}
+
+.btn-secondary:hover {
+  background: #4b5563;
+}
+
+/* Central analytics panel with screenshot image */
+.analytics-panel {
+  margin-top: 18px;
+  border-radius: 18px;
+  background: #151521;
+  padding: 10px;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
+}
+
+.analytics-image {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Metrics row under panel */
+.metrics-row {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  background: #1a1b28;
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+}
+
+.metric-label {
+  color: #9ca3af;
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.metric-sub {
+  font-size: 11px;
+  color: #4ade80;
+}
+
+.metric-sub.red {
+  color: #f97373;
+}
+
+/* UNIVERSAL ACTIVITY LOG STYLE — apply to ALL ADMIN PAGES */
+.activity-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.activity-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  background: #f4f4f5;
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000;
+}
+
+.activity-item span {
+  color: #555;
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .activity-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    order: -1;
+  }
+  .metrics-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* TOP POST WIDGET */
+.top-post-card {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 18px 22px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.top-post-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.top-post-content {
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.top-post-content .post-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.top-post-content .post-meta {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.top-post-content .post-body {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.top-post-content .big-numbers {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.big-numbers span {
+  background: rgb(252, 252, 252);
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* ANALYTICS CHARTS */
+.analytics-charts {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 16px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 260px;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.chart-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+@media (max-width: 900px) {
+  .chart-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Chart containment fix ===== */
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 260px;      /* adjust if you want taller */
+  overflow: hidden;  /* stops overlap */
+}
+
+.chart-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

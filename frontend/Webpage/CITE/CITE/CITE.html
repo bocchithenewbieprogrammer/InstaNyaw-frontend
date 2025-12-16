@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CITE LCUP Page</title>
+  <link rel="stylesheet" href="CITE.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="../Homepage/Homepage.html" class="nav-logo-group">
+        <img src="instanyaw.png" alt="InstaNyaw Logo" class="nav-logo">
+        <p class="brand-name">InstaNyaw</p>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="Search here...">
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-icons">
+        <!-- Message -->
+        <div class="icon message">
+          <i class="fa-solid fa-message" id="msgIcon"></i>
+          <div class="dropdown-bubble" id="msgDropdown">
+            <div class="dropdown-header">
+              <h4>Messages</h4>
+            </div>
+
+            <div class="message-list" id="messageList">
+              <div class="message-item" data-school="College of Information Technology and Engineering LCUP
+" data-avatar="citelogo.jpg" data-message="Welcome to CITE Department!">
+  <img src="citelogo.jpg" alt="CITE" class="msg-avatar">
+  <div class="msg-content">
+    <strong>College of Information Technology and Engineering LCUP</strong>
+    <p>Welcome to CITE Department!</p>
+  </div>
+</div>
+
+<div class="message-item" data-school="CASE" data-avatar="case.jpg" data-message="Welcome to CASE Department!">
+  <img src="case.jpg" alt="CASE" class="msg-avatar">
+  <div class="msg-content">
+    <strong>College of Arts Sciences and Education LCUP</strong>
+    <p>Welcome to CASE Department!</p>
+  </div>
+</div>
+
+<div class="message-item" data-school="CBEA" data-avatar="cbealogo.png" data-message="Welcome to CBEA Department!">
+  <img src="cbealogo.png" alt="CBEA" class="msg-avatar">
+  <div class="msg-content">
+    <strong> College of Business Entrepreneurship and Accountancy LCUP</strong>
+    <p>Welcome to CBEA Department!</p>
+  </div>
+</div>
+
+<div class="message-item" data-school="CITHM" data-avatar="cithmlogo.png" data-message="Welcome to CITHM Department!">
+  <img src="cithmlogo.png" alt="CITHM" class="msg-avatar">
+  <div class="msg-content">
+    <strong>College of International Tourism and Hospitality Management LCUP</strong>
+    <p>Welcome to CITHM Department!</p>
+  </div>
+</div>
+
+<div class="message-item" data-school="CAMP" data-avatar="camplogo.jpg" data-message="Welcome to CAMP Department!">
+  <img src="camplogo.jpg" alt="CAMP" class="msg-avatar">
+  <div class="msg-content">
+    <strong>College of Allied Medical Professions Society LCUP</strong>
+    <p>Welcome to CAMP Department!</p>
+  </div>
+</div>
+
+
+              <div class="dropdown-footer">
+                <a href="#" class="see-all-msg">See all in Messenger</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Notification -->
+      <div class="icon notification">
+        <i class="fa-solid fa-bell" id="notifIcon"></i>
+        <div class="dropdown-bubble" id="notifDropdown">
+          <p>No new notifications</p>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="icon profile">
+        <img src="final_icon-removebg-preview.png" alt="User" class="user-icon" id="profileIcon">
+        <div class="dropdown" id="profileDropdown">
+          <div class="dropdown-header" onclick="window.location.href='../Profile/profile.html'">
+            <i class="fa-solid fa-user"></i>
+            <span><b>User</b></span>
+          </div>
+          <hr>
+          <div class="dropdown-item" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </nav>
+
+  <!-- PROFILE HEADER -->
+  <section class="profile-section">
+    <img src="College of Information Technology and Engineering LCUP .jpg" alt="Logo" class="profile-logo">
+    <div class="profile-info">
+      <h2>College of Information Technology and Engineering LCUP</h2>
+      <p>0 Followers</p>
+      <button class="message-btn" id="profileMessageBtn">
+        <i class="fa-regular fa-message"></i> Message
+      </button>
+        <button class="follow-btn" id="followBtn">
+    <i class="fa-solid fa-user-plus"></i> Follow
+  </button>
+      <!-- CHATBOX POPUP -->
+      <div class="chatbox" id="chatBox">
+        <div class="chatbox-header">
+          <div class="chatbox-profile">
+            <img src="College of Information Technology and Engineering LCUP .jpg" alt="CITE LCUP"
+              class="chatbox-avatar" />
+            <h4>CITE LCUP</h4>
+          </div>
+          <button id="closeChat"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="chatbox-messages" id="chatMessages">
+          <div class="message received">Welcome to CITE Department!</div>
+        </div>
+
+        <div class="chatbox-input">
+          <input type="text" id="chatInput" placeholder="Type a message..." />
+          <button id="sendChat"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+  </section>
+
+
+  <!-- TABS -->
+  <div class="tabs">
+    <a href="#" id="posts-tab" class="active">Posts</a>
+    <a href="#" id="about-tab">About</a>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="content">
+    <!-- Posts Section -->
+    <div id="posts-section" class="posts-wrapper">
+      <div class="box small featured-card" id="featuredCard">
+        <h3 class="featured-title">Featured</h3>
+        <div class="featured-header">
+          <img src="College of Information Technology and Engineering LCUP .jpg" alt="CITE LCUP"
+            class="featured-avatar">
+          <div class="featured-info">
+            <h4>College of Information Technology and Engineering LCUP</h4>
+            <p>October 1 · <i class="fa-solid fa-earth-asia"></i></p>
+          </div>
+        </div>
+
+        <div class="featured-title">
+          <p><strong>Dean’s List Award</strong> | College of Information Technology and Engineering...</p>
+        </div>
+
+        <div class="featured-images">
+          <img src="deanlister.jpg" alt="Dean’s Lister">
+          <img src="lister1.jpg" alt="Dean’s Lister">
+          <img src="lister2.jpg" alt="Dean’s Lister">
+          <img src="lister3.jpg" alt="Dean’s Lister" class="extra-img">
+        </div>
+      </div>
+
+      <div class="posts-section">
+        <h3 class="posts-title">Posts</h3>
+        <div class="box large">
+          <div class="post-header">
+            <img src="College of Information Technology and Engineering LCUP .jpg" alt="CITE LCUP" class="post-avatar">
+            <div class="post-info">
+              <h4>College of Information Technology and Engineering LCUP</h4>
+              <p>November 2 at 1:31 PM · <i class="fa-solid fa-earth-asia"></i></p>
+            </div>
+          </div>
+
+          <div class="post-text">
+            <p><strong>Honoring the Departed All Souls’ Day </strong></p>
+            <p>Today, we honor the souls of our departed loved ones. All Souls’ Day, observed on November 2, is a time
+              for reflection, prayer, and remembrance. Families visit cemeteries, light candles, and offer flowers to
+              keep the memories of the departed alive in their hearts.</p>
+            <p>For that, they are loved, they are cherished, and they are always in our hearts. Let us light a candle,
+              offer a prayer, or simply take a moment to honor those who have shaped our lives and left us with lasting
+              memories. 🤍🕊️</p>
+            <p class="hashtags">#AllSoulsDay #RememberingLovedOnes #CommemorationOfAllDeparted</p>
+          </div>
+
+          <div class="post-image">
+            <img src="CITE post.jpg" alt="All Souls Day Post" class="viewable" data-title="Happy Halloween!"
+              data-caption="Honoring the Departed All Souls’ Day
+
+Today, we honor the souls of our departed loved ones. All Souls’ Day, observed on November 2, is a time for reflection, prayer, and remembrance. Families visit cemeteries, light candles, and offer flowers to keep the memories of the departed alive in their hearts.
+For that, they are loved, they are cherished, and they are always in our hearts. Let us light a candle, offer a prayer, or simply take a moment to honor those who have shaped our lives and left us with lasting memories. 🤍🕊️">
+          </div>
+          <!-- Reaction and Comment Section -->
+          <div class="post-actions">
+            <button class="like-btn"><i class="fa-solid fa-thumbs-up"></i> Like</button>
+            <button class="dislike-btn"><i class="fa-solid fa-thumbs-down"></i> Dislike</button>
+            <button class="comment-btn"><i class="fa-solid fa-comment"></i> Comment</button>
+          </div>
+
+          <!-- Comment Box -->
+          <div class="comment-section">
+            <input type="text" placeholder="Write a comment..." class="comment-input">
+            <button class="send-comment"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+        </div>
+        <div class="box large" id="postDL">
+          <div class="post-header">
+            <img src="College of Information Technology and Engineering LCUP .jpg" alt="CITE LCUP" class="post-avatar">
+            <div class="post-info">
+              <h4>College of Information Technology and Engineering LCUP</h4>
+              <p>October 1 · <i class="fa-solid fa-earth-asia"></i></p>
+            </div>
+          </div>
+
+          <div class="post-text">
+            <p><strong>Dean’s List Award</strong> | The College of Information Technology and Engineering proudly
+              presents the 𝗗𝗲𝗮𝗻’𝘀 𝗟𝗶𝘀𝘁 𝗔𝘄𝗮𝗿𝗱𝗲𝗲𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗦𝗰𝗵𝗼𝗼𝗹 𝗬𝗲𝗮𝗿 𝟮𝟬𝟮𝟰–𝟮𝟬𝟮𝟱
+              from the programs 𝗕𝗦𝗜𝗧, 𝗕𝗦𝗜𝗘, 𝗮𝗻𝗱 𝗕𝗦𝗖𝗢𝗘.🎓📚
+              Being on the Dean’s List is more than just numbers, it represents the late nights of studying, the
+              challenges conquered, the values that each student have, and the balance of responsibilities both inside
+              and outside the classroom. 𝗜𝘁 𝗿𝗲𝗳𝗹𝗲𝗰𝘁𝘀 𝘁𝗵𝗲 𝗱𝗶𝘀𝗰𝗶𝗽𝗹𝗶𝗻𝗲 𝘁𝗼 𝗮𝗶𝗺 𝗵𝗶𝗴𝗵𝗲𝗿,
+              𝘁𝗵𝗲 𝗱𝗲𝘁𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗼𝗻 𝘁𝗼 𝗿𝗲𝗮𝗰𝗵 𝗴𝗼𝗮𝗹𝘀, 𝗮𝗻𝗱 𝘁𝗵𝗲 𝗽𝗮𝘀𝘀𝗶𝗼𝗻 𝗳𝗼𝗿 𝗼𝘂𝗿
+              𝗖𝗜𝗧𝗘 𝗖𝗼𝗻𝘀𝗼𝗹𝗮𝗻𝗶𝗮𝗻𝘀 𝘁𝗼 𝗴𝗿𝗼𝘄 𝗮𝘀 𝗳𝘂𝘁𝘂𝗿𝗲 𝗽𝗿𝗼𝗳𝗲𝘀𝘀𝗶𝗼𝗻𝗮𝗹𝘀. 🎖️✨
+              𝗞𝗲𝗲𝗽 𝘀𝘁𝗿𝗶𝘃𝗶𝗻𝗴 𝗳𝗼𝗿 𝗸𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲, 𝗶𝗻𝗻𝗼𝘃𝗮𝘁𝗶𝗼𝗻, 𝗮𝗻𝗱 𝗶𝗻𝘁𝗲𝗴𝗿𝗶𝘁𝘆 𝗮𝘀
+              𝘆𝗼𝘂 𝘀𝗵𝗮𝗽𝗲 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝘃𝗲𝘀 𝗶𝗻𝘁𝗼 𝗳𝘂𝘁𝘂𝗿𝗲 𝗹𝗲𝗮𝗱𝗲𝗿𝘀 𝗮𝗻𝗱
+              𝗰𝗵𝗮𝗻𝗴𝗲𝗺𝗮𝗸𝗲𝗿𝘀. 𝗧𝗵𝗲 𝗖𝗼𝗹𝗹𝗲𝗴𝗲 𝗼𝗳 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻 𝗧𝗲𝗰𝗵𝗻𝗼𝗹𝗼𝗴𝘆 𝗮𝗻𝗱
+              𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 𝗶𝘀 𝗽𝗿𝗼𝘂𝗱 𝗼𝗳 𝘆𝗼𝘂! 👏💙</p>
+            <p class="hashtags">#CITEDeansLister
+              #WeAimHighCITE
+              #BSITBSIEBSCOE
+              #CITEdepartment
+              #LaConsolacionU</p>
+          </div>
+
+          <div class="dl-album">
+            <div class="dl-main">
+              <img src="deanlister.jpg" alt="Dean’s Lister Awardee">
+            </div>
+
+            <div class="dl-grid">
+              <img src="lister1.jpg" alt="Dean’s Lister">
+              <img src="lister2.jpg" alt="Dean’s Lister">
+              <img src="lister3.jpg" alt="Dean’s Lister">
+
+              <div class="dl-more">
+                <img src="lister4.jpg" alt="Dean’s Lister">
+                <span>+10</span>
+              </div>
+            </div>
+            <!-- 🖼️ Hidden images for the viewer -->
+            <div class="dl-hidden">
+              <img src="lister5.jpg" alt="Dean’s Lister">
+              <img src="lister6.jpg" alt="Dean’s Lister">
+              <img src="lister7.jpg" alt="Dean’s Lister">
+              <img src="lister8.jpg" alt="Dean’s Lister">
+              <img src="lister9.jpg" alt="Dean’s Lister">
+              <img src="lister10.jpg" alt="Dean’s Lister">
+              <img src="lister11.jpg" alt="Dean’s Lister">
+              <img src="lister12.jpg" alt="Dean’s Lister">
+              <img src="lister13.jpg" alt="Dean’s Lister">
+            </div>
+          </div>
+          <div class="post-actions">
+            <button class="like-btn"><i class="fa-solid fa-thumbs-up"></i> Like</button>
+            <button class="dislike-btn"><i class="fa-solid fa-thumbs-down"></i> Dislike</button>
+            <button class="comment-btn"><i class="fa-solid fa-comment"></i> Comment</button>
+          </div>
+
+          <div class="comment-section">
+            <input type="text" placeholder="Write a comment..." class="comment-input">
+            <button class="send-comment"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="content-box" id="about-section" style="display: none;">
+      <div class="about-sidebar">
+        <h3>About</h3>
+        <ul>
+          <li class="active" onclick="showSection('contact')">Contact and basic info</li>
+          <li onclick="showSection('transparency')">Page transparency</li>
+        </ul>
+      </div>
+
+      <div class="about-info" id="contact">
+        <h4>Categories</h4>
+        <p>🏛️ Nonprofit organization</p>
+
+        <h4>Contact info</h4>
+        <p>🏠 Valenzuela St. Capitol View Park Subdv, Bulihan, Malolos, Philippines, 3000</p>
+        <p>📧 citesc@email.lcup.edu.ph</p>
+
+        <h4>Basic info</h4>
+        <p>⭐ Not yet rated (0 Reviews)</p>
+        <p>🕒 Open now</p>
+      </div>
+
+      <div class="about-info" id="transparency" style="display: none;">
+        <h4>Page Transparency</h4>
+        <p>This section provides information to help you understand the purpose and background of this page.</p>
+
+        <p><strong>Page ID</strong> 104775795791075</p>
+        <p><strong>Page created:</strong> January 15, 2020</p>
+        <p><strong>Admin Info:</strong> This Page can have multiple admins. They may have permission to post content,
+          comment or send messages as the Page.</p>
+        <p><strong>Managed by:</strong> College of Information Technology and Engineering LCUP Team</p>
+      </div>
+    </div>
+  </section>
+  <!-- 🖼️ Image Viewer Layout -->
+  <div id="imageViewer" class="viewer">
+    <!-- ❌ Close Button moved to top-right -->
+    <button class="close">&times;</button>
+
+    <div class="viewer-content">
+      <!-- Left Side: Image Display -->
+      <div class="viewer-left">
+        <img id="viewerImg" class="viewer-img" src="" alt="">
+        <div class="viewer-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+      </div>
+
+      <!-- Right Side: Info/Caption Box -->
+      <div class="viewer-right">
+        <h3 id="viewerTitle"></h3>
+        <p id="viewerCaption">
+      </div>
+    </div>
+  </div>
+
+  <script src="CITE.js"></script>
+  <script src="../../shared/logout.js"></script>
+
+
+</body>
+
+</html>

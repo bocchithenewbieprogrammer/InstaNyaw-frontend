@@ -1,0 +1,747 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f3f3f3;
+  color: #222;
+}
+
+/* 🔹 NAVBAR (same style as your Home layout) */
+.navbar {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  position: relative; /* 🔹 important for absolute centering */
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+
+/* 🔹 group logo + search bar */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none; /* 🔹 removes underline */
+  color: inherit; /* para hindi maging asul ang text */
+}
+
+.logo p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #252525;
+  margin: 0;
+}
+
+.logo img {
+  width: 40px;  /* dati 38px */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f3f3f3;
+  border-radius: 25px;
+  padding: 10px 18px;
+  width: 400px; /* adjust as needed */
+  gap: 8px;
+}
+
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  width: 100%;
+  color: #333;
+}
+
+.search-box i {
+  font-size: 16px;
+  color: #555;
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 18px;
+}
+
+.nav-right i {
+  background: #f0f2f5;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* 🔹 mas malaki icon */
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-right i:hover {
+  background: #ddd;
+  color: #1877f2;
+}
+
+.nav-profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 🔹 PROFILE CONTENT */
+.profile-section {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.avatar:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.info h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info p {
+  font-size: 13px;
+  color: gray;
+  margin-top: 4px;
+}
+
+.edit-btn {
+  background: #e5e5e5;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  background: #d9d9d9;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.no-post {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+  font-weight: 500;
+}
+
+.navbar .logo {
+    width: 38px;
+    cursor: pointer;
+}
+
+.navbar .logo img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+
+/** drop down **/
+.dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 180px;
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.dropdown.active {
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-header,
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-header i,
+.dropdown-item i {
+  background: #f1f1f1;
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-header:hover,
+.dropdown-item:hover {
+  background: #f9f9f9;
+}
+
+.dropdown-header span,
+.dropdown-item span {
+  font-size: 14px;
+  color: #000;
+}
+
+.dropdown hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 5px 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.dropdown-bubble {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #555;
+  display: none;
+  white-space: nowrap;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-bubble.active {
+  display: block;
+}
+
+.dropdown-bubble p {
+  margin: 0;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🔹 EDIT PROFILE MODAL */
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.edit-modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.edit-modal-content {
+  background: #fff;
+  width: 350px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-modal-content h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.edit-modal-content label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-modal-content input[type="text"],
+.edit-modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.edit-modal-content textarea {
+  resize: none;
+  height: 70px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#passwordInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+
+#saveBtn {
+  background: #1877f2;
+  color: white;
+}
+
+#saveBtn:hover {
+  background: #166fe0;
+}
+
+#cancelBtn {
+  background: #ddd;
+}
+
+#cancelBtn:hover {
+  background: #ccc;
+}
+
+/* 🔹 Avatar hover effect with overlay text */
+.avatar-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.avatar-container .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.avatar-container:hover .avatar {
+  filter: brightness(70%);
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s ease;
+  pointer-events: none; /* para clickable pa rin yung image */
+}
+
+.avatar-container:hover .avatar-overlay {
+  opacity: 1;
+}
+
+
+/* TAG STYLE FOR ROLE & DEPARTMENT */
+.nav-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  margin-right: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ROLE COLORS */
+.role-admin { background: #c0392b; color: #fff; }
+.role-employee { background: #2980b9; color: #fff; }
+.role-student { background: #27ae60; color: #fff; }
+
+/* DEPARTMENT COLORS */
+.dept-cite { background: #c58908; color: #fff; }
+.dept-camp { background: #df240b; color: #fff; }
+.dept-case { background: #22e7ee; color: #fff; }
+.dept-cbea { background: #e0e414; color: #fff; }
+.dept-cithm { background: #46f312; color: #fff; }
+
+/* ================= HEADER (Unified With Homepage) ================= */
+
+nav {
+  height: 60px;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.nav-left .logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.nav-left .logo p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-center .search-box {
+  background: #f0f2f5;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 250px;
+}
+
+.nav-center .search-box i {
+  margin-right: 10px;
+  color: #555;
+}
+
+.nav-center .search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* DROPDOWNS (Messages + Notifs) */
+.dropdown-bubble {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 220px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  display: none;
+}
+
+.dropdown-bubble.active {
+  display: block;
+}
+
+/* PROFILE MENU */
+.profile-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Profile dropdown */
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 180px;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  display: none;
+}
+
+.dropdown.active {
+  display: block;
+}
+
+.dropdown-header,
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.dropdown-header:hover,
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+#profilePosts {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-post-card {
+  background: #fff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  border: 1px solid #eee;
+}
+
+.profile-post-card .post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.profile-post-card .post-meta {
+  font-size: 12px;
+  color: #777;
+}
+
+.profile-post-card .post-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.profile-post-card .post-content {
+  font-size: 14px;
+  color: #333;
+}
+
+.profile-post-card .post-label {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.post-label-home { background: #e0f2fe; color: #0369a1; }
+.post-label-birthday { background: #fee2e2; color: #b91c1c; }
+.post-label-announcement { background: #fef3c7; color: #92400e; }
+.post-label-news { background: #e0f7fa; color: #006064; }
+.post-label-lostfound { background: #ecfdf5; color: #047857; }
+
+/* =========================
+   MEDIA PREVIEW & GALLERY
+   ========================= */
+.gallery {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  gap: 3px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 1 image */
+.gallery-1 img {
+  height: auto;
+}
+
+/* 2 images */
+.gallery-2 {
+  grid-template-columns: 1fr 1fr;
+}
+.gallery-2 img {
+  height: 260px;
+}
+
+/* 3+ images */
+.gallery-3 {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.gallery-3 .big {
+  grid-row: 1 / span 2;
+  height: 260px;
+}
+.gallery-3 .small {
+  height: 128px;
+}
+
+.more-wrapper {
+  position: relative;
+}
+.more-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Videos */
+.video-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-video {
+  width: 100%;
+  max-height: 360px;
+  border-radius: 10px;
+  background: #000;
+}
+
+/* ==========================
+   HIDE SEARCH + MESSAGE + NOTIFICATION (PROFILE PAGE ONLY)
+========================== */
+nav .nav-center,
+nav #msgIcon,
+nav #notifIcon {
+    display: none !important;
+}

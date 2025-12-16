@@ -1,0 +1,12 @@
+{
+  "username": "test1",
+  "email": "test1i@gmail.com",
+  "password": "123456"
+}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmE1MWEyMjhiOTU4NmEyOGNhYThmNSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxMjM1Mzg0LCJleHAiOjE3NjEzMjE3ODR9.pPLHCyBMFX6b1hE6m_gYtbw-vkiDyOswjBUGf5yZV4I
+
+{
+  "email": "test2i@gmail.com",
+  "password": "123456"
+}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmE1MTlmMjhiOTU4NmEyOGNhYThmMiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxMjM1NDIxLCJleHAiOjE3NjEzMjE4MjF9.Lz6C5_uR6MMVeFawHZCc4ljNPmcnDMZAQO7gz1X6YZY

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LCUP Log In</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="images/logo.png" alt="LCU Logo" class="header-logo" />
+    <div class="header-text">
+      <h1>La Consolacion University Philippines</h1>
+      <p>Capitol View Park, Catmon Rd, Malolos, 3000 Bulacan</p>
+    </div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div class="login-container">
+    <div class="login-box">
+      <!-- Left side with logo -->
+       <div class="login-left">
+  <div class="logo-box">
+    <img src="images/logo.png" class="login-logo" alt="LCUP Logo" />
+    <h1 class="app-title">InstaNyaw</h1>
+     <p class="app-subtitle">SCHOOL BASED SOCIAL MEDIA SYSTEM</p>
+  </div>
+      
+
+      <!-- Right side with form -->
+      <div class="login-right">
+        <h3>Log In</h3>
+        <form id="loginForm">
+          <div class="form-row">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          </div>
+
+          <div class="form-row">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+          </div>
+
+          <button class="btn" type="submit">Log In</button>
+        </form>
+
+        <p class="register-text">
+          Don’t have an account?
+          <button class="register-link" onclick="window.location.href='../Register/index.html'">Register</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,548 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f6f7;
+  color: #222;
+}
+
+/* --- NAVBAR --- */
+nav {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 40px;
+}
+
+.nav-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;  /* alisin underline */
+}
+
+
+.nav-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+}
+
+.nav-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+/* Search bar centered */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #f1f3f6;            /* light gray background */
+  padding: 8px 15px;
+  border-radius: 25px;
+  width: 380px;
+  height: 40px;
+  border: none;
+}
+
+.search-bar i {
+  color: #777;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* Navbar right */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px; /* dagdag space between icons */
+}
+
+.nav-right i {
+  font-size: 18px;               /* mas malaki icons */
+  color: #333;
+  background: #f0f2f5;
+  padding: 10px;                 /* mas malaking circle */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav-right i:hover {
+  background: #e2e4e8;     /* slight zoom on hover */
+}
+
+.user-icon {
+  width: 40px;                   /* mas malaki user icon */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon {
+  position: relative;
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+}
+
+.notif-box,
+.msg-box {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: none;
+  text-align: center;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.notif-box p,
+.msg-box p {
+  margin: 0;
+  color: #555;
+}
+
+/* Active state */
+.notif-box.active,
+.msg-box.active {
+  display: block;
+}
+
+/* Optional hover effect */
+.icon:hover {
+  color: #007bff;
+}
+
+/* --- PROFILE SECTION --- */
+.profile-section {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 25px 40px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.profile-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    margin-left: 20px;
+}
+
+.profile-info h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-info p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.message-btn {
+    background: #1877f2;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.message-btn i {
+    margin-right: 5px;
+}
+
+
+/* --- TABS --- */
+.tabs {
+    display: flex;
+    background: #fff;
+    position: relative;
+    padding-left: 40px;
+    border-bottom: none;
+}
+
+.tabs::before {
+    content: "";
+    position: absolute;
+    top: 0;             /* <-- move to top instead of bottom */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #1877f2, #f97316); /* blue to orange */
+}
+
+.tabs a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #777;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tabs a.active {
+    color: #1877f2;
+    border-bottom: 2px solid #f97316; /* orange underline */
+}
+
+.tabs a:hover {
+    color: #1877f2;
+}
+
+
+/* --- CONTENT --- */
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6f7;
+  padding: 60px 0;
+}
+
+
+.boxes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  width: 90%;
+  top: -40px;
+  position: relative;
+}
+
+.box {
+  background: #e7e6e6;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.box.small {
+  width: 400px;
+  height: 430px;
+  position: relative;
+}
+
+.box.large {
+  width: 780px;
+  height: 430px;
+}
+
+/* "Featured" text */
+.label {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 14px;
+  color: #777;
+  font-weight: 500;
+}
+
+/* PROFILE DROPDOWN MENU */
+.profile {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 220px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.profile-dropdown.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header (Admin/User) */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.profile-header i {
+  font-size: 20px;
+  color: #000;
+}
+
+/* Logout section */
+.logout-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.logout-option i {
+  font-size: 18px;
+  color: #555;
+}
+
+.logout-option span {
+  color: #555;
+  font-weight: 500;
+}
+
+.logout-option:hover {
+  background: #f2f2f2;
+}
+
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 180px;
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.dropdown.active {
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-header,
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-header i,
+.dropdown-item i {
+  background: #f1f1f1;
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-header:hover,
+.dropdown-item:hover {
+  background: #f9f9f9;
+}
+
+.dropdown-header span,
+.dropdown-item span {
+  font-size: 14px;
+  color: #000;
+}
+
+.dropdown hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 5px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ABOUT SECTION === */
+.content-box {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0;
+  display: flex;
+  min-height: 450px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+  /* 🔽 Ito ang magtataas sa box */
+  position: relative;
+  top: -40px; /* adjust mo: -20px, -30px, -40px depende sa gusto mong taas */
+}
+
+.about-sidebar {
+  width: 280px;
+  background-color: #fafafa;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.about-sidebar h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.about-sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+
+.about-sidebar li {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.about-sidebar li.active,
+.about-sidebar li:hover {
+  background-color: #e7f0ff;
+  color: #1877f2;
+  font-weight: bold;
+}
+
+.about-info {
+  flex: 1;
+  padding: 30px 40px;
+  overflow-y: auto;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.about-info img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.about-info h4 {
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.about-info p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Scrollbar styling */
+.about-info::-webkit-scrollbar {
+  width: 8px;
+}
+
+.about-info::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.about-info::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+/* === SLIDE IN ANIMATION === */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px); /* mula kanan */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideInRight 0.4s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.4s ease forwards;
+}

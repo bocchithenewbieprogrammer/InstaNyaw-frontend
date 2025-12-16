@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LCUP – Analytics & Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="analysis.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+      <img src="images/logo.png" alt="LCUP Logo" class="header-logo">
+      <div class="header-text">
+        <h1>La Consolacion University Philippines</h1>
+        <p>Capitol View Park, Catmon Rd, Malolos, 3000 Bulacan</p>
+      </div>
+    </div>
+
+    <!-- ===== MAIN LAYOUT ===== -->
+    <main class="layout">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <h3 class="menu-title">MENU</h3>
+
+        <ul class="menu-list">
+          <li class="menu-item" data-link="../user/adminuser.html">User</li>
+          <li class="menu-item" data-link="../contentmanager/contentmanager.html">Content Manager</li>
+          <li class="menu-item active" data-link="../analysis/analysis.html">Analytics & Report</li>
+          <div class="sidebar-bottom">
+    <button id="goToHome" class="sidebar-btn">
+        <i class="fa-solid fa-house"></i> Go to Home
+    </button>
+
+    <button id="adminLogoutBtn" class="sidebar-btn logout">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+</div>
+
+        </ul>
+      </aside>
+
+      <!-- ===== ANALYTICS CARD ===== -->
+      <section class="main-card analytics-card">
+
+        <!-- Header Row -->
+        <div class="analytics-header-row">
+          <h2 class="card-title">Analytics & Report</h2>
+
+          <div class="analytics-filters">
+            <select id="timeFilter" class="filter-select">
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="90">Last 90 days</option>
+            </select>
+
+            <button id="btnRefresh" class="btn-secondary">
+              <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+
+
+          </div>
+        </div>
+
+      
+
+        <!-- ===== CHARTS SECTION (Step 9) ===== -->
+        <div class="analytics-charts">
+          <div class="chart-row">
+            <!-- Posts / Likes / Comments trend -->
+            <div class="chart-card">
+              <h3>Activity Trend</h3>
+              <p class="chart-subtitle">Posts, likes, and comments over time</p>
+              <div class="chart-box">
+  <canvas id="postsChart"></canvas>
+</div>
+
+            </div>
+
+            <!-- Department distribution -->
+            <div class="chart-card">
+              <h3>Users per Department</h3>
+              <p class="chart-subtitle">CITE, CASE, CBEA, CITHM, CAMP</p>
+              <div class="chart-box">
+  <canvas id="deptChart"></canvas>
+</div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== METRICS ROW ===== -->
+        <div class="metrics-row">
+
+          <div class="metric-card">
+            <span class="metric-label">Total Active Users</span>
+            <span class="metric-value" id="metric-users">0</span>
+            <span class="metric-sub" id="metric-users-sub">--</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">Posts & Interactions</span>
+            <span class="metric-value" id="metric-posts">0</span>
+            <span class="metric-sub" id="metric-interactions-sub">--</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">Reported Content</span>
+            <span class="metric-value" id="metric-reported">0</span>
+            <span class="metric-sub red" id="metric-reported-sub">--</span>
+          </div>
+
+        </div> <!-- END metrics-row -->
+
+        <!-- ===== TOP POST WIDGET ===== -->
+        <div class="top-post-card">
+          <h3>🔥 Top Performing Post</h3>
+        
+          <div id="topPostContent" class="top-post-content">
+            <p>Loading...</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===== ACTIVITY LOG ===== -->
+      <aside class="activity-panel">
+        <div class="activity-card">
+          <h3 class="activity-title">Activity Log</h3>
+          <div id="activityList" class="activity-list">
+            <!-- JS appends logs here -->
+          </div>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- ===== JS (Chart.js first) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../admin-auth.js"></script>
+  <script src="analysis.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+contentmanager.css
+/* ===================== GLOBAL (copy font from USER) ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background: #2b2a2a;
+  color: #111827;
+}
+/* ===== HEADER ===== */
+.header {
+  width: 100%;
+  height: 140px;
+  background: url("images/header.jpg") center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  z-index: 0;
+}
+
+.header-logo {
+  width: 90px;
+  margin-right: 15px;
+  z-index: 1;
+}
+
+.header-text {
+  text-align: left;
+  z-index: 1;
+}
+
+.header-text h1 {
+  color: #001f54;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header-text p {
+  font-size: 12px;
+  color: #333;
+  margin-top: 3px;
+}
+
+
+/* ===================== LAYOUT (match dashboard) ===================== */
+
+.page-container {
+  display: grid;
+  grid-template-columns: 250px 1fr 280px; /* same as USER page */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ===================== SIDEBAR (EXACT COPY OF USER SIDEBAR) ===================== */
+
+.sidebar {
+  background: linear-gradient(180deg, #ff7b2c, #f7943d, #1c4ed8);
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  height: 620px;               /* same as USER */
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-label,
+.menu-title {
+  font-size: 18px;             /* same size as USER */
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-item {
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-item.active {
+  background: white;
+  color: #1e1e2d;
+  font-weight: 600;
+}
+
+/* bottom buttons – EXACT same structure as USER */
+.sidebar-bottom {
+/* ← pulls buttons up */
+  padding: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.sidebar-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+}
+
+.sidebar-btn:hover {
+  background: #dcdfe4;
+}
+
+.sidebar-btn.logout {
+  background: #ffdddd;
+}
+
+.sidebar-btn.logout:hover {
+  background: #ffbaba;
+}
+
+/* ===================== MAIN CONTENT CARD ===================== */
+
+.main-card.content-card {
+  background: #28253b;
+  padding: 20px 22px;
+  border-radius: 20px;
+  color: white;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header inside the card */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+  padding-bottom: 12px;
+}
+
+.content-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.content-subtitle {
+  font-size: 13px;
+  color: #e5e7eb;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* Filters row */
+.content-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.filter-select,
+.filter-search {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  font-size: 12px;
+  outline: none;
+  background: transparent;
+  color: #e5e7eb;
+}
+
+.filter-select:focus,
+.filter-search:focus {
+  border-color: #f97316;
+}
+
+.filter-search::placeholder {
+  color: #9ca3af;
+}
+
+/* ===================== TABLE CARD ===================== */
+
+.table-wrapper {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #4b5563;
+  background: #111827;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table thead {
+  background: #1f2937;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #374151;
+}
+
+.data-table th {
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: #020617;
+}
+
+.data-table tbody tr:nth-child(odd) {
+  background: #030712;
+}
+
+.data-table tbody tr:hover {
+  background: #111827;
+}
+
+/* ===================== BADGES ===================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-type-home {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-type-birthday {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-type-announcement {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-type-news {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-type-lostfound {
+  background: #f3e8ff;
+  color: #6d28d9;
+}
+
+.badge-hidden-yes {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-hidden-no {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ===================== ACTION BUTTONS ===================== */
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.btn-small {
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-small i {
+  font-size: 10px;
+}
+
+.btn-hide {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.btn-unhide {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.btn-small:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  opacity: 0.95;
+}
+
+/* ===================== EXCERPT ===================== */
+
+.post-excerpt {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #e5e7eb;
+}
+
+/* Username under name in table */
+.user-username {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* ===================== ACTIVITY PANEL ===================== */
+
+.activity-panel {
+  background: #28253b;
+  padding: 20px;
+  border-radius: 20px;
+  height: calc(100vh - 140px);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.activity-list {
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.activity-time {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* ===================== HEADER RIGHT (admin info + logout) ===================== */
+
+.header-right .admin-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-right: 10px;
+}
+
+.admin-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.admin-role-tag,
+.admin-dept-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.admin-role-tag {
+  background: #1d4ed8;
+  color: #e5e7eb;
+}
+
+.admin-dept-tag {
+  background: #f97316;
+  color: #111827;
+  margin-left: 4px;
+}
+
+.btn-logout {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-logout:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+.btn-view {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-view:hover {
+  background: #2563eb;
+}
+/* =======================
+   VIEW POST MODAL
+========================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+}
+
+.modal-box {
+  width: 600px;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  overflow-y: auto;
+  color: #000;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.modal-content-area {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.modal-media {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* View Post button (blue) */
+.btn-view {
+  background: #3b82f6;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-view:hover {
+  background: #2563eb;
+}

@@ -1,0 +1,348 @@
+Nice — I’ll pull everything together from the code and conversation you shared and give you a single, detailed, useful summary you can copy to the new chat. I’ve reconstructed this from the files and messages you gave me (Homepage.html / Homepage.js, User model, birthdayController, auth controllers/routes, and dev debug comments). Where I had to infer something I’ll say so — I won’t invent commit history or files I haven’t seen.
+
+InstaNyaw — Full project summary (reconstructed)
+
+Source: your conversation and code snippets you pasted (Homepage.html, Homepage.js, User.js, birthdayController.js, authController, authRoutes, auth.js, multiple frontend JS versions).
+If you want a perfect full dump, upload the rest of backend files (server/app entry, other controllers/models, middleware, package.json, .env, any views). But this summary is a complete, practical starting point.
+
+⸻
+
+1) Project overview (what InstaNyaw is)
+	•	InstaNyaw is a school/institution-limited social platform (a mini social network) for La Consolacion University Philippines (LCUP) students & employees.
+	•	Key features implemented:
+	•	Home feed that aggregates different post types (Birthday Greetings, Annoucements, School News, Lost & Found).
+	•	CRUD endpoints for Birthdays, Announcements, News, Lost & Found.
+	•	Authentication (register/login) with JWT.
+	•	Role-based user model (student, employee, admin), though you had issues toggling admin behavior.
+	•	File/image uploads are handled client-side as Base64 (converted with FileReader and sent in JSON).
+	•	Profile/avatar for users (avatar stored as string URL or base64).
+	•	Simple UI: single-page-like behavior with changePage that swaps center content.
+	•	Backend runs locally (you used localhost:5000 in fetches). DB is MongoDB (you used Compass, saw ECONNREFUSED then fixed it).
+
+⸻
+
+2) Tech stack & dev tools used
+
+Backend
+	•	Node.js + Express
+	•	Mongoose (MongoDB ODM)
+	•	MongoDB (local; you used MongoDB Compass to inspect DB)
+	•	bcryptjs (password hashing)
+	•	jsonwebtoken (JWT tokens)
+	•	dotenv for configs (inferred)
+	•	Typical project structure (inferred) with controllers, models, routes, middleware
+
+Frontend
+	•	Vanilla HTML / CSS / JavaScript
+	•	Font Awesome icons
+	•	Browser fetch() for calling APIs
+	•	FileReader API to convert images to base64 and preview them
+	•	localStorage to store JWT token and user object returned on login
+
+Dev environment
+	•	Windows 10 (you said)
+	•	Visual Studio 2022 was referenced previously (but likely you use VS Code or Visual Studio — you mentioned Visual Studio 2022 in conversation)
+	•	MongoDB Compass for DB admin
+	•	You run server locally (services.msc to start mongo service earlier, as you asked about)
+
+⸻
+
+3) Reconstructed folder layout (suggested / inferred)
+
+instanyaw/
+├─ backend/
+│  ├─ models/
+│  │  ├─ User.js
+│  │  ├─ BirthdayGreeting.js
+│  │  ├─ Announcement.js
+│  │  ├─ News.js
+│  │  └─ LostFound.js
+│  ├─ controllers/
+│  │  ├─ authController.js
+│  │  ├─ birthdayController.js
+│  │  ├─ announcementsController.js
+│  │  ├─ newsController.js
+│  │  └─ lostFoundController.js
+│  ├─ routes/
+│  │  ├─ authRoutes.js
+│  │  ├─ birthdayRoutes.js
+│  │  ├─ announcementsRoutes.js
+│  │  ├─ newsRoutes.js
+│  │  └─ lostFoundRoutes.js
+│  ├─ middleware/
+│  │  └─ authMiddleware.js
+│  ├─ server.js (or app.js / index.js)
+│  └─ package.json
+└─ frontend/
+   ├─ public/
+   │  └─ images/  (icons, default avatar)
+   ├─ Homepage.html
+   ├─ Homepage.css
+   └─ Homepage.js
+
+	•	Note: Some files you provided appear duplicated (authController + auth.js). Keep only one auth implementation to avoid route collision.
+
+⸻
+
+4) Important models (what you provided / inferred)
+
+User (you provided User.js)
+
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true, trim: true },
+  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+  password: { type: String, required: true, minlength: 6 },
+  bio: { type: String, default: "" },
+  avatar: { type: String, default: "" }, // stores image url or base64
+  role: { type: String, enum: ["student","employee","admin"], default: "student" },
+  isBanned: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now }
+});
+
+	•	Password hashing handled in pre("save").
+	•	matchPassword method present.
+
+BirthdayGreeting (inferred, used in controller)
+	•	Fields used in controller:
+	•	recipient (ObjectId -> User)
+	•	message (String)
+	•	image (String — base64 or url)
+	•	createdBy (ObjectId -> User)
+	•	createdAt (Date)
+	•	Example Mongoose schema would populate recipient and createdBy.
+
+Other models (inferred)
+	•	Announcement likely: title, content, createdBy, createdAt, image?
+	•	News: title, content, createdBy, createdAt, image?
+	•	LostFound: title, description, status, image, user, createdAt
+
+⸻
+
+5) Backend controllers & routes (what exists and important behaviour)
+
+Auth
+	•	authController.js (you shared): register, login, logout, getProfile.
+	•	Login issues resolved by searching with email OR username.
+	•	Login returns { token, user: { id, username, email, role } }.
+	•	getProfile uses protect middleware to pull req.user.id.
+	•	authRoutes.js you shared registers POST /register, POST /login, POST /logout, GET /profile (protected).
+	•	Another file auth.js (route) duplicates register/login — be careful: only one router should be mounted in server to avoid duplication.
+
+Birthday controller (you shared)
+	•	createGreeting(req, res):
+	•	Accepts { recipientUsername, message, image } in req.body.
+	•	Finds recipient by username, creates BirthdayGreeting with recipient, message, image, createdBy: req.user._id.
+	•	getGreetings(req, res):
+	•	Fetches greetings and .populate('recipient','username').populate('createdBy','username') then sorts.
+
+Other controllers (inferred)
+	•	announcementsController, newsController, lostFoundController should implement analogous create/get endpoints. Your frontend expects these endpoints:
+	•	GET /api/birthdays
+	•	POST /api/birthdays
+	•	GET /api/announcements
+	•	POST /api/announcements
+	•	GET /api/news
+	•	POST /api/news
+	•	GET /api/lostfound
+	•	POST /api/lostfound
+
+⸻
+
+6) Frontend (what you gave)
+
+Files present
+	•	Homepage.html — main single-page layout, nav, left menu, main center, create-post modal.
+	•	Homepage.css (not provided, but referenced).
+	•	Homepage.js — large script controlling UI, changing pages and calling backend APIs.
+
+Key frontend behavior
+	•	changePage(title, content, showPostBox) used to dynamically change center content.
+	•	Each tab (Birthday, News, Announcements, Lost & Found) sets inner HTML with form + feed container and attaches event listeners.
+	•	Feed load functions:
+	•	loadBirthdayGreetings() calls /api/birthdays and renders entries.
+	•	Similarly loadAnnouncements(), loadSchoolNews(), loadLostItems() call respective endpoints.
+	•	Home feed aggregates all posts via loadHomeFeed() which fetches the four endpoints and merges + sorts by createdAt, then uses renderPostHTML to render each post type with avatars and usernames.
+	•	Image upload: frontend converts images to base64 via FileReader and sends in JSON body (e.g., body: JSON.stringify({ title, content, image })).
+	•	Auth token handling:
+	•	localStorage.getItem('token') used for Authorization header Bearer ${token}.
+
+Known frontend issues observed from conversation
+	•	Duplicate IDs across different dynamic pages — you asked to “fix IDs”.
+	•	At one point announcements were admin-only; you rolled back to allow all users.
+	•	Birthday greeting modal and the post-btn were wired via a generic document click handler; previously birthday button “didn’t work” until rework.
+	•	You asked to display avatar + username in header and have username clickable to profile — code needs to call GET /api/auth/profile to populate header.
+	•	You requested swapping order: username first then avatar. (You later asked to switch positions — will be a small DOM change.)
+	•	Image upload not working in birthday greetings — probable causes:
+	•	Server-side controller may expect createdBy from req.user (so request must be authenticated and protect middleware must set req.user).
+	•	If client sends base64 under wrong field name or too large payload, server might reject.
+	•	Duplicate route files or incorrect route mounting could cause requests to hit wrong handler.
+	•	Need to verify frontend element IDs and event hookup for birthday upload (you added a global .post-btn handler — ensure correct ids and modal element presence).
+	•	You had localhost:27017 connection issues earlier (Mongo service not started) — fixed by starting the MongoDB service.
+
+⸻
+
+7) API contract / request + response shapes (what frontend expects)
+
+Authentication
+	•	POST /api/auth/login -> request { email | username, password }
+response:
+
+{
+  "token": "<jwt>",
+  "user": { "id": "...", "username":"...", "email":"...", "role":"student" }
+}
+
+	•	GET /api/auth/profile (protected) -> returns user document minus password:
+
+{ "_id": "...", "username": "...", "email": "...", "avatar": "...", "role": "...", ... }
+
+Birthday
+	•	GET /api/birthdays returns array of greetings, each populated:
+
+[ { "_id":"...", "recipient": {"_id":"..","username":".."}, "message":"...", "image":"data:...","createdBy": {"_id":"..","username":".."}, "createdAt":"..." }, ... ]
+
+	•	POST /api/birthdays body:
+
+{ "recipientUsername": "someuser", "message": "Happy!", "image": "data:image/..." }
+
+	•	Server uses req.user._id as createdBy (so protect middleware required).
+
+Announcements / News / LostFound
+	•	Similar shapes — createdBy/createdAt fields populated; image optional.
+
+⸻
+
+😎 Common problems I noticed (and fixes)
+	1.	Duplicate auth route files (authController vs auth.js)
+	•	Keep a single routes file and single controller. Mount it once in server.js. Duplicate routes can cause confusing behavior.
+	2.	Admin role not reflecting UI
+	•	You changed role in MongoDB Compass but UI still didn’t show announcement button. Likely reasons:
+	•	UI checks user from localStorage, not from DB. Ensure after changing role you re-login or update localStorage.user.
+	•	Server may require server-side role-check in route; ensure protect + authorize('admin') middleware is implemented if admin-only.
+	•	The button visibility is controlled in frontend—check logic that hides/shows the announcement post box.
+	3.	Image upload failing (Birthday)
+	•	Check:
+	•	Is client including Authorization header with token? createBirthday uses Authorization: Bearer ${token}.
+	•	Does backend accept large JSON bodies? If base64 images are large you must increase express.json({ limit: '10mb' }).
+	•	Is req.body.image being saved correctly in Mongoose schema? If schema field name differs (e.g., imageUrl vs image), mismatch causes empty field.
+	•	Are there frontend ID mismatches (e.g., fileInput vs file_input) so file isn’t read?
+	•	Likely solution: increase body parser limit and verify field names.
+	4.	ID collisions in dynamic pages
+	•	Since changePage injects HTML with same IDs for different pages, you must ensure event listeners are attached after the new DOM is inserted (you already do this in places). Also avoid having duplicate global document.getElementById("lostBtn") listeners set multiple times — use removeEventListener or set listeners once on static nav.
+	5.	Header avatar + username
+	•	Implement GET /api/auth/profile on page load (or on login) and populate header elements:
+	•	document.getElementById('profileIcon').src = profile.avatar || default
+	•	document.getElementById('profileName').textContent = profile.username
+	•	Add hover CSS for color change and clickable link to profile page.
+	6.	Home feed shows avatars:
+	•	Your loadHomeFeed() merges posts, but some post objects use different nested fields:
+	•	birthdays use author or createdBy?
+	•	lostfound uses user
+	•	Make sure backend populate() returns consistent property names or adapt frontend rendering to check multiple fields (you already do with post.createdBy?.avatar || post.author?.avatar || post.user?.avatar if needed).
+
+⸻
+
+9) Security & performance recommendations
+	•	Do not store large images as base64 in DB — store files on S3 or disk and save URLs in DB. Base64 in DB increases DB size and slows responses.
+	•	Increase body parser limit if you keep base64 approach: in server.js:
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
+	•	Validate inputs server-side (title length, allowed image types).
+	•	Protect routes: ensure create endpoints require protect middleware and check roles if required.
+	•	Avoid multiple route duplicates and keep consistent naming (createdBy vs author vs user).
+
+⸻
+
+10) Where we left off (from your convo) — what you wanted next
+	•	Make header show the logged-in user’s avatar + username (username clickable -> profile, hover color change). You already asked to swap positions (username then avatar). I can provide the small HTML/JS/CSS change.
+	•	Fix birthday image upload — I listed likely causes above. To finish I need:
+	•	server.js (to inspect express.json() limits and route mounting)
+	•	birthday model (BirthdayGreeting.js) to confirm field names
+	•	birthdays route file (to confirm middlewares & controller usage)
+	•	Any error logs from server when upload fails (stack trace)
+	•	You also asked feed aggregated posts to appear in Homepage feed — your loadHomeFeed() is implemented; ensure it’s called on page load (it is) and homeFeed element exists in DOM. You already added <div id="homeFeed"> in changePage() when Home loads.
+
+⸻
+
+11) Quick actionable checklist I recommend you run now (so you can copy to the new chat)
+	1.	Send me these backend files (or paste):
+	•	server.js (or app.js) — to check body-parser limits and route mounting.
+	•	BirthdayGreeting.js model file.
+	•	birthdays route file.
+	•	Any middleware authMiddleware.js.
+	•	package.json (to list installed packages).
+	•	If available, the announcements, news, lostFound model/controller files.
+	2.	On your server, check logs when you attempt to create a birthday with an image:
+	•	Look at server console for JSON parsing errors or payload size errors.
+	•	If you saw PayloadTooLargeError, increase express.json({ limit: '...' }).
+	3.	To add header avatar + username (frontend):
+	•	Add HTML placeholders in nav (in Homepage.html):
+
+<div class="profile-display" id="profileDisplay">
+  <span id="headerUsername" class="header-username">Username</span>
+  <img id="headerAvatar" class="header-avatar" src="final_icon-removebg-preview.png" alt="avatar">
+</div>
+
+	•	Add CSS for hover & clickable style:
+
+.profile-display { cursor: pointer; display:flex; align-items:center; gap:8px; }
+.header-username { transition: color .15s; }
+.profile-display:hover .header-username { color: #1a73e8; } /* example color */
+.header-avatar { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+
+	•	On load (Homepage.js):
+
+async function populateHeader() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/auth/profile', { headers: { Authorization: Bearer ${token} }});
+    if (!res.ok) return;
+    const user = await res.json();
+    document.getElementById('headerUsername').textContent = user.username;
+    document.getElementById('headerAvatar').src = user.avatar || 'final_icon-removebg-preview.png';
+
+    // make clickable
+    document.getElementById('profileDisplay').addEventListener('click', () => {
+      window.location.href = '/Profile/profile.html';
+    });
+  } catch (err) { console.error(err); }
+}
+window.addEventListener('DOMContentLoaded', populateHeader);
+
+	4.	Fix birthday image upload:
+	•	Confirm that the frontend POST /api/birthdays sends { recipientUsername, message, image } and includes the Authorization header.
+	•	Confirm backend express.json({ limit: '10mb' }) is set.
+	•	Confirm BirthdayGreeting schema has image field and the controller saves req.body.image.
+
+⸻
+
+12) Known code inconsistencies found (things to clean)
+	•	Many repeated blocks in Homepage.js (multiple definitions of same function or duplicate listeners). Consolidate to one file version — remove old copies.
+	•	Use consistent field names across your API responses: use either createdBy everywhere or author.
+	•	Make sure loadHomeFeed() uses the same populated property names that controllers return.
+	•	Ensure only one auth route file is mounted (remove duplicate auth.js if you use authController + authRoutes).
+
+⸻
+
+13) What I can do next in the new chat (concrete next steps I can implement for you)
+	•	Fix header UI (swap username/avatar, add hover + click) — I can give exact HTML/CSS/JS patch.
+	•	Fix birthdays image upload end-to-end — but I need the backend files listed in checklist (server.js, BirthdayGreeting model, birthdays route).
+	•	Clean and de-duplicate Homepage.js (I can provide a cleaned, consolidated version).
+	•	Add server-side validation and bodyParser increase to allow images.
+	•	Add secure file storage suggestion (S3 or local uploads with multer) and sample code to switch from base64 to file upload.
+
+⸻
+
+14) Final notes & honesty
+	•	This summary is built from the code snippets and conversation you posted. I did not inspect any files beyond what you pasted — if anything in your repo differs from the snippets, tell me or paste the files and I’ll update the summary or produce exact patches.
+	•	You said you’ll move to a new chat because this one reached the limit — perfect. Before you do, copy the checklist (section 11) and upload those backend files to the new chat so I can finish the fixes (especially server.js, BirthdayGreeting.js, and your route/middleware files).
+
+⸻
+
+If you want, I’ll:
+	1.	Produce a cleaned Homepage.js (single-file, deduped) and mark the lines where you must add ids for the header avatar/username.
+	2.	Produce the small header HTML + CSS + JS patch I described (ready to paste).
+	3.	Or start by fixing the birthday image upload — but for that I’ll need the backend server.js, BirthdayGreeting model, and the birthdays route/controller files.

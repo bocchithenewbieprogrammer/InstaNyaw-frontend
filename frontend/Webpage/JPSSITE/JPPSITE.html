@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITE LCUP Page</title>
+    <link rel="stylesheet" href="JPPSITE.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+    <div class="nav-left">
+        <a href="../Homepage/Homepage.html" class="nav-logo-group">
+            <img src="instanyaw.png" alt="InstaNyaw Logo" class="nav-logo">
+            <p class="brand-name">InstaNyaw</p>
+        </a>
+    </div>
+
+    <div class="nav-center">
+        <div class="search-bar">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search here...">
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <div class="nav-icons">
+  <!-- Message -->
+  <div class="icon message">
+    <i class="fa-solid fa-message"></i>
+    <div class="msg-box" id="msgBox">
+      <p>No new message</p>
+    </div>
+  </div>
+  <div class="icon notification">
+    <i class="fa-solid fa-bell"></i>
+    <div class="notif-box" id="notifBox">
+      <p>No new notifications</p>
+    </div>
+  </div>
+
+  <div class="icon profile">
+  <img src="final_icon-removebg-preview.png" alt="User" class="user-icon" id="profileIcon">
+
+  <div class="dropdown" id="profileDropdown">
+    <div class="dropdown-header" onclick="window.location.href='../Profile/profile.html'">
+      <i class="fa-solid fa-user"></i>
+      <span><b>User</b></span>
+    </div>
+    <hr>
+    <div class="dropdown-item"id="logoutBtn">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>Logout</span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</nav> 
+
+    <!-- PROFILE HEADER -->
+    <section class="profile-section">
+    <img src="Junior Philippine Student Society for Information Technology Education LCUP .jpg" alt="Logo" class="profile-logo">
+    <div class="profile-info">
+        <h2>College of Information Technology and Engineering LCUP</h2>
+        <p>0 Follow</p>
+        <button class="message-btn">
+            <i class="fa-regular fa-message"></i> Message
+        </button>
+    </div>
+</section>
+
+
+    <!-- TABS -->
+<div class="tabs">
+  <a href="#" id="posts-tab" class="active">Posts</a>
+  <a href="#" id="about-tab">About</a>
+</div>
+
+<!-- CONTENT -->
+<section class="content">
+  <!-- Posts Section -->
+  <div id="posts-section">
+    <div class="boxes">
+      <div class="box small">
+        <span class="label">Featured</span>
+      </div>
+      <div class="box large"></div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="content-box" id="about-section" style="display: none;">
+    <div class="about-sidebar">
+      <h3>About</h3>
+      <ul>
+        <li class="active" onclick="showSection('contact')">Contact and basic info</li>
+        <li onclick="showSection('transparency')">Page transparency</li>
+      </ul>
+    </div>
+
+    <div class="about-info" id="contact">
+      <h4>Categories</h4>
+      <p>🏛️ Education Website</p>
+
+      <h4>Contact info</h4>
+      <p>🏠 Valenzuela St. Capitol View Park Subdv, Bulihan, Malolos, Philippines, 3000</p>
+      <p>📧 lcup.jpssite@gmail.com</p>
+
+      <h4>Basic info</h4>
+      <p>⭐ Not yet rated (0 Reviews)</p>
+      <p>🕒 Open now</p>  
+    </div>
+
+    <div class="about-info" id="transparency" style="display: none;">
+      <h4>Page Transparency</h4>
+      <p>This section provides information to help you understand the purpose and background of this page.</p>
+
+      <p><strong>Page ID:</strong> 116844923057221</p>
+      <p><strong>Page created:</strong> October 11, 2019</p>
+      <p><strong>Admin Info:</strong> This Page can have multiple admins. They may have permission to post content, comment or send messages as the Page.</p>
+      <p><strong>Managed by:</strong> Junior Philippine Student Society for Information Technology Education LCUP Team</p>
+    </div>
+  </div>
+</section>
+
+        <script src="JPPSITE.js"></script>
+        <script src="../../shared/logout.js"></script>
+
+</body>
+</html>

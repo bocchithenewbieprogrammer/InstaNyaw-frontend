@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCUP – Users</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="adminuser.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <img src="images/logo.png" class="header-logo" alt="LCUP Logo">
+    <div class="header-text">
+      <h1>La Consolacion University Philippines</h1>
+      <p>Capitol View Park, Catmon Rd, Malolos, 3000 Bulacan</p>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <h3 class="menu-label">MENU</h3>
+
+      <ul class="menu-list">
+        <li class="menu-item" data-link="../user/adminuser.html">
+          User
+        </li>
+
+        <li class="menu-item" data-link="../contentmanager/contentmanager.html">
+          Content Manager
+        </li>
+
+        <li class="menu-item" data-link="../analysis/analysis.html">
+          Analytics & Report
+        </li>
+
+
+      </ul>
+
+      <div class="sidebar-bottom">
+        <button id="goToHome" class="sidebar-btn">
+          <i class="fa-solid fa-house"></i> Go to Home
+        </button>
+
+        <button id="adminLogoutBtn" class="sidebar-btn logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ===== MAIN PANEL ===== -->
+    <main class="main-panel" style="width:100%; ">
+      <h2 class="section-title">Users</h2>
+
+      <!-- USERS TABLE -->
+      <div class="table-container">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Joined Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="userTableBody">
+            <!-- JS loads rows here -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- JS -->
+  <script src="adminuser.js"></script>
+  <script src="../admin-auth.js"></script>
+
+</body>
+</html>

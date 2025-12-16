@@ -1,0 +1,296 @@
+adminuser.css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+body {
+  background: url("images/lcup-bg.png") center/cover fixed;
+  background: #2b2a2a;
+  color: #111827;
+}
+
+
+/* ===== HEADER ===== */
+.header {
+  width: 100%;
+  height: 140px;
+  background: url("images/header.jpg") center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  z-index: 0;
+}
+
+.header-logo {
+  width: 90px;
+  margin-right: 15px;
+  z-index: 1;
+}
+
+.header-text {
+  text-align: left;
+  z-index: 1;
+}
+
+.header-text h1 {
+  color: #001f54;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header-text p {
+  font-size: 12px;
+  color: #333;
+  margin-top: 3px;
+}
+
+/* PAGE LAYOUT */
+.page-container {
+  display: grid;
+  grid-template-columns: 250px 1fr 280px;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ============================================
+   ⭐ FIXED SIDEBAR (MATCHES ANALYTICS PAGE)
+============================================ */
+.sidebar {
+  background: linear-gradient(180deg, #ff7b2c, #f7943d, #1c4ed8);
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 620px;
+}
+
+.menu-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* menu list wrapper */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* menu buttons */
+.menu-item {
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.menu-item.active {
+  background: white;
+  color: #1e1e2d;
+  font-weight: 600;
+}
+
+/* bottom buttons */
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+}
+
+.sidebar-btn:hover {
+  background: #dcdfe4;
+}
+
+.sidebar-btn.logout {
+  background: #ffdddd;
+}
+
+.sidebar-btn.logout:hover {
+  background: #ffbaba;
+}
+
+/* ============================================
+   EXISTING CODE BELOW (UNCHANGED)
+============================================ */
+
+/* MAIN PANEL */
+.main-panel {
+  background: #262738;
+  border-radius: 15px;
+  color: rgb(0, 0, 0);
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+/* TABLE */
+.table-container {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  max-height: 560px;
+  overflow: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+  font-weight: 600;
+  color: black;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: rgb(10, 0, 0);
+  font-size: 12px;
+}
+
+.active { background: #28c76f; }
+.banned { background: #ff4d4d; }
+.suspended { background: #ffa21a; }
+.pending { background: #00cfe8; }
+
+/* ACTIVITY LOG */
+.activity-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.activity-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  background: #f4f4f5;
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000;
+}
+
+.activity-item span {
+  color: #555;
+  font-size: 12px;
+}
+
+/* ACTIVITY PANEL */
+.activity-panel {
+  background: linear-gradient(to bottom right, #1f1f2e, #262738);
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+
+.activity-list {
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 10px;
+  height: 85%;
+  overflow-y: auto;
+}
+
+/* USER ACTION BUTTONS */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: #fff;
+}
+
+.btn-ban { background: #ff3b3b; }
+.btn-ban:hover { background: #d12c2c; transform: translateY(-1px); }
+
+.btn-unban { background: #28c76f; }
+.btn-unban:hover { background: #1f9e57; transform: translateY(-1px); }
+
+.btn-role { background: #7367f0; }
+.btn-role:hover { background: #5a4fd1; transform: translateY(-1px); }
+
+.btn-delete { background: #ff8300; }
+.btn-delete:hover { background: #d96c00; transform: translateY(-1px); }
+
+

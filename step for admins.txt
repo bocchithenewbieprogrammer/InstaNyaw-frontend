@@ -1,0 +1,81 @@
+❌ 1. No Content Moderation routes yet
+
+You do NOT have:
+
+hide post
+
+unhide post
+
+admin delete ANY post
+
+admin edit ANY post (content manager)
+
+These must be created for:
+
+HomePost
+
+BirthdayGreeting
+
+Announcement
+
+SchoolNews
+
+LostAndFound
+
+❌ 2. No Department-limited filtering
+
+Sub-admins must only manage:
+
+their department users
+
+their department posts
+
+Your protect middleware gives department data,
+but adminController.js does NOT use department for filtering yet.
+
+❌ 3. No Analytics Endpoints Yet
+
+Your dashboard needs:
+
+totalUsers
+
+totalPosts
+
+totalComments
+
+totalLikes
+
+postsPerDepartment
+
+topPost
+
+activityLog
+
+postsPerDay
+
+NONE of these routes exist yet.
+
+❌ 4. No Hidden Post System Yet
+
+Your post models still lack:
+
+hidden: Boolean
+
+
+Admin cannot hide/unhide posts until this exists system-wide.
+
+❌ 5. No Dashboard Frontend Bindings
+
+Your admin dashboard frontend will need:
+
+JS functions to load metrics
+
+JS functions to load users list
+
+JS for ban/unban buttons
+
+JS for hide/unhide buttons
+
+JS filtering by role / department
+
+Right now, there are no JS APIs connected.

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCUP Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="images/logo.png" alt="LCUP Logo" class="header-logo">
+        <div class="header-text">
+            <h1>La Consolacion University Philippines</h1>
+            <p>Capitol View Park, Catmon Rd, Malolos, 3000 Bulacan</p>
+        </div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register-left">
+                <div class="left-content">
+                    <img src="images/logo.png" alt="LCUP Logo" class="register-logo">
+                    <h2 class="app-title">InstaNyaw</h2>
+                    <p class="app-subtitle">SCHOOL BASED SOCIAL MEDIA SYSTEM</p>
+                </div>
+            </div>
+
+            <div class="register-right">
+                <h3>Register</h3>
+                <form id="registerForm">
+                  <div class="form-row">
+                    <label for="firstName">First name:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                  </div>
+
+                  <div class="form-row">
+                    <label for="lastName">Last name:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                  </div>
+
+                  <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                  </div>
+
+                  <!-- 🆕 Department selection -->
+                  <div class="form-row">
+                    <label for="department">Department:</label>
+                    <select id="department" name="department" required>
+                      <option value="">Select your department</option>
+                      <option value="CITE">CITE</option>
+                      <option value="CAMP">CAMP</option>
+                      <option value="CASE">CASE</option>
+                      <option value="CBEA">CBEA</option>
+                      <option value="CITHM">CITHM</option>
+                    </select>
+                  </div>
+
+                  <div class="form-row">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                  </div>
+
+                  <button class="btn" type="submit">Register</button>
+                </form>
+
+                <p class="login-text">
+                  Already have an account?
+                  <a class="log in" onclick="window.location.href='../Login/index.html'">Log In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

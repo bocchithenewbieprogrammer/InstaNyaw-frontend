@@ -1,0 +1,6 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+
+# If you have any local env files for frontend (usually none)
+.env
