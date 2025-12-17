@@ -5,7 +5,7 @@ const API_BASE =
   location.hostname === "localhost"
     ? "http://localhost:5000"
     : "https://instanyaw-backend.onrender.com";
- = "https://instanyaw-backend.onrender.com";
+
 
 
 // Runs on every admin page
