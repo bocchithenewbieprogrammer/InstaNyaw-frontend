@@ -1,7 +1,8 @@
 // ========== ADMIN AUTH GUARD ==========
 
 // Change this if your backend uses a different URL
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://instanyaw-backend.onrender.com";
+
 
 // Runs on every admin page
 async function requireAdmin() {
