@@ -33,7 +33,7 @@ async function loadAnalytics() {
     const range = document.getElementById("timeFilter")?.value || 30;
 
     const res = await fetch(`${API_BASE}/api/admin/analytics?range=${range}`, {
-      headers: adminHeaders(),
+      headers: authHeaders(),
     });
 
     const data = await res.json();
