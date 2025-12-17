@@ -8,6 +8,7 @@ const API_BASE =
 
 
 
+
 // Runs on every admin page
 async function requireAdmin() {
   const token = localStorage.getItem("token");

@@ -330,6 +330,18 @@ function applyFilters() {
   renderUsers(filtered);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".menu-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const link = item.dataset.link;
+      if (link) {
+        window.location.href = link;
+      }
+    });
+  });
+});
+
+
 // ========== LOGOUT + GO HOME ==========
 function setupLogoutButton() {
   const btn = document.getElementById("adminLogoutBtn");
