@@ -53,11 +53,10 @@ async function loadNavbarProfile() {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  try {
-    const res = await fetch(${API_BASE}
-/api/auth/profile", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+try {
+  const res = await fetch(`${API_BASE}/api/auth/profile`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
     const user = await res.json();
     if (!res.ok) throw new Error(user.message || "Failed to load profile");
@@ -157,20 +156,20 @@ saveBtn.addEventListener("click", async () => {
 
   if (!token) return window.location.href = "../../Login/index.html";
 
-  try {
-    const res = await fetch(${API_BASE}
-/api/profile/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        username: newName || undefined,
-        bio: newBio || undefined,
-        password: newPassword || undefined,
-      }),
-    });
+ try {
+  const res = await fetch(`${API_BASE}/api/profile/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      username: newName || undefined,
+      bio: newBio || undefined,
+      password: newPassword || undefined,
+    }),
+  });
+
 
     const result = await res.json();
     if (!res.ok) throw new Error(result.message);
@@ -212,15 +211,15 @@ profilePicInput.addEventListener("change", async () => {
     const base64 = e.target.result;
     const token = localStorage.getItem("token");
 
-    const res = await fetch(${API_BASE}
-/api/profile/avatar", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ avatar: base64 }),
-    });
+const res = await fetch(`${API_BASE}/api/profile/avatar`, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({ avatar: base64 }),
+});
+
 
     const data = await res.json();
     if (!res.ok) return alert("Avatar upload failed");
@@ -272,11 +271,11 @@ async function loadProfile() {
 
   if (visitingUserId) return loadOtherProfile();
 
-  try {
-    const res = await fetch(${API_BASE}
-/api/profile/me", {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+try {
+  const res = await fetch(`${API_BASE}/api/profile/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
 
     const user = await res.json();
 
