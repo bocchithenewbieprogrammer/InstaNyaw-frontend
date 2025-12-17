@@ -5,6 +5,7 @@ const API_BASE =
     : "https://instanyaw-backend.onrender.com";
 
 
+
 // ===============================
 // AUTH HEADERS (USER SIDE)
 // ===============================
@@ -191,15 +192,20 @@ async function loadUserProfile() {
   if (!token) return;
 
   try {
-    const res = await fetch("http://localhost:5000/api/profile/me", {
-      headers: { Authorization: `Bearer ${token}` },
+    const res = await fetch(`${API_BASE}/api/profile/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
+
     const user = await res.json();
     if (!res.ok) throw new Error(user.message);
 
     window.loggedInUser = user;
 
     const fallback = "final_icon-removebg-preview.png";
+    // ... rest of your existing code continues here
+
 
     // Navbar
     const profileIcon = document.getElementById("profileIcon");
@@ -362,45 +368,7 @@ function getEditDeleteHTML(post) {
   `;
 }
 
-// =================================================
-// Lost & Found (load/create)
-// =================================================
-async function loadLostItems() {
-  const token = localStorage.getItem("token");
-  const feed = document.getElementById("lostFeed");
-  if (!feed) return;
-  if (!token) {
-    feed.innerHTML = "<p>Please log in to view lost/found posts.</p>";
-    return;
-  }
 
-  try {
-    const res = await fetch("http://localhost:5000/api/lostfound", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message);
-
-    if (!data.length) {
-      feed.innerHTML = "<p>No items yet. 🕵️</p>";
-      return;
-    }
-
-    const typed = data.map(item => ({ type: "lostfound", ...item }));
-    window.currentFeedPosts = typed;
-    feed.innerHTML = typed.map(renderPostHTML).join("");
-    typed.forEach(p => loadLikeCount(p._id, p.type));
-
-    attachEditButtons();
-    attachDeleteButtons();
-    attachLikeButtons();
-    attachCommentButtons();
-
-  } catch (err) {
-    console.error(err);
-    feed.innerHTML = "<p>Failed to load lost/found items.</p>";
-  }
-}
 
 // Lost modal: preview & submit
 document.getElementById("lostImageIcon").addEventListener("click", () =>
@@ -429,9 +397,10 @@ document.getElementById("lostPostBtn").onclick = async () => {
 
   const isEditing = window.currentEdit && window.currentEdit.type === "lostfound";
 
-  const url = isEditing
-    ? `http://localhost:5000/api/lostfound/${window.currentEdit.id}`
-    : "http://localhost:5000/api/lostfound";
+const url = isEditing
+  ? `${API_BASE}/api/lostfound/${window.currentEdit.id}`
+  : `${API_BASE}/api/lostfound`;
+
 
   const method = isEditing ? "PUT" : "POST";
 
@@ -455,6 +424,7 @@ document.getElementById("lostPostBtn").onclick = async () => {
 
   } catch (err) {
     showNotification(err.message, "error");
+  
   }
 };
 
@@ -465,15 +435,19 @@ async function loadSchoolNews() {
   const token = localStorage.getItem("token");
   const feed = document.getElementById("newsFeed");
   if (!feed) return;
+
   if (!token) {
     feed.innerHTML = "<p>Please log in to view news.</p>";
     return;
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/news", {
-      headers: { Authorization: `Bearer ${token}` },
+    const res = await fetch(`${API_BASE}/api/news`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
+
     const data = await res.json();
     if (!res.ok) throw new Error(data.message);
 
@@ -485,6 +459,7 @@ async function loadSchoolNews() {
     const typed = data.map(n => ({ type: "news", ...n }));
     window.currentFeedPosts = typed;
     feed.innerHTML = typed.map(renderPostHTML).join("");
+
     typed.forEach(p => loadLikeCount(p._id, p.type));
 
     attachEditButtons();
@@ -497,6 +472,7 @@ async function loadSchoolNews() {
     feed.innerHTML = "<p>Failed to load school news.</p>";
   }
 }
+
 
 // News modal preview & submit
 document.getElementById("newsImageIcon").addEventListener("click", () =>
@@ -524,9 +500,10 @@ document.getElementById("newsPostBtn").onclick = async () => {
 
   const isEditing = window.currentEdit && window.currentEdit.type === "news";
 
-  const url = isEditing
-    ? `http://localhost:5000/api/news/${window.currentEdit.id}`
-    : "http://localhost:5000/api/news";
+const url = isEditing
+  ? `${API_BASE}/api/news/${window.currentEdit.id}`
+  : `${API_BASE}/api/news`;
+
 
   const method = isEditing ? "PUT" : "POST";
 
@@ -565,16 +542,17 @@ async function loadAnnouncements() {
     return;
   }
 
-  try {
-    const res = await fetch("http://localhost:5000/api/announcements", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message);
-    if (!data.length) {
-      feed.innerHTML = "<p>No announcements yet 📢</p>";
-      return;
-    }
+try {
+  const res = await fetch(`${API_BASE}/api/announcements`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message);
+  if (!data.length) {
+    feed.innerHTML = "<p>No announcements yet 📢</p>";
+    return;
+  }
+
 
     const typed = data.map(a => ({ type: "announcement", ...a }));
     window.currentFeedPosts = typed;
@@ -644,9 +622,10 @@ document.getElementById("announcePostBtn").onclick = async () => {
 
   const isEditing = window.currentEdit && window.currentEdit.type === "announcement";
 
-  const url = isEditing
-    ? `http://localhost:5000/api/announcements/${window.currentEdit.id}`
-    : "http://localhost:5000/api/announcements";
+const url = isEditing
+  ? `${API_BASE}/api/announcements/${window.currentEdit.id}`
+  : `${API_BASE}/api/announcements`;
+
 
   const method = isEditing ? "PUT" : "POST";
 
@@ -708,10 +687,11 @@ async function loadBirthdayGreetings() {
     return;
   }
 
-  try {
-    const res = await fetch("http://localhost:5000/api/birthdays", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+ try {
+  const res = await fetch(`${API_BASE}/api/birthdays`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.message);
@@ -784,9 +764,10 @@ document.getElementById("birthdayPostBtn").addEventListener("click", async () =>
 
   const isEditing = window.currentEdit && window.currentEdit.type === "birthday";
 
-  const url = isEditing
-    ? `http://localhost:5000/api/birthdays/${window.currentEdit.id}`
-    : "http://localhost:5000/api/birthdays";
+const url = isEditing
+  ? `${API_BASE}/api/birthdays/${window.currentEdit.id}`
+  : `${API_BASE}/api/birthdays`;
+
 
   const method = isEditing ? "PUT" : "POST";
 
@@ -864,9 +845,10 @@ document.getElementById("homePostBtn").addEventListener("click", async () => {
   const isEditing =
     window.currentEdit && window.currentEdit.type === "homepost";
 
-  const url = isEditing
-    ? `http://localhost:5000/api/homeposts/${window.currentEdit.id}`
-    : "http://localhost:5000/api/homeposts";
+const url = isEditing
+  ? `${API_BASE}/api/homeposts/${window.currentEdit.id}`
+  : `${API_BASE}/api/homeposts`;
+
 
   const method = isEditing ? "PUT" : "POST";
 
@@ -931,14 +913,26 @@ async function loadHomeFeed() {
     return;
   }
 
-  try {
-    const [homeRes, birthdaysRes, announcementsRes, newsRes, lostFoundRes] = await Promise.all([
-      fetch("http://localhost:5000/api/homeposts", { headers: { Authorization: `Bearer ${token}` } }),
-      fetch("http://localhost:5000/api/birthdays", { headers: { Authorization: `Bearer ${token}` } }),
-      fetch("http://localhost:5000/api/announcements", { headers: { Authorization: `Bearer ${token}` } }),
-      fetch("http://localhost:5000/api/news", { headers: { Authorization: `Bearer ${token}` } }),
-      fetch("http://localhost:5000/api/lostfound", { headers: { Authorization: `Bearer ${token}` } }),
+try {
+  const [homeRes, birthdaysRes, announcementsRes, newsRes, lostFoundRes] =
+    await Promise.all([
+      fetch(`${API_BASE}/api/homeposts`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      fetch(`${API_BASE}/api/birthdays`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      fetch(`${API_BASE}/api/announcements`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      fetch(`${API_BASE}/api/news`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      fetch(`${API_BASE}/api/lostfound`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
     ]);
+
 
     const [homeposts, birthdays, announcements, news, lostfound] = await Promise.all([
       homeRes.json(),
@@ -1040,7 +1034,8 @@ function renderMedia(post) {
     if (Array.isArray(post.images) && post.images.length > 0) {
       post.images = post.images.map(img => {
         if (img.startsWith("data:")) return img; // base64 already
-        return `http://localhost:5000/${img.replace(/^\//, "")}`;
+        return `http://${API_BASE}
+/${img.replace(/^\//, "")}`;
       });
     }
   }
@@ -1071,7 +1066,8 @@ if (post.videos && post.videos.length > 0) {
     // If it's NOT a data: URL, treat it as a server path
     if (!video.startsWith("data:")) {
       const fixed = video.startsWith("/") ? video : "/" + video;
-      src = `http://localhost:5000${fixed}`;
+      src = `http://${API_BASE}
+${fixed}`;
     }
 
     html += `
@@ -1398,15 +1394,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn)
     logoutBtn.addEventListener("click", async () => {
       try {
-        await fetch("http://localhost:5000/api/auth/logout", {
+        await fetch(`${API_BASE}/api/auth/logout`, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         });
-      } catch { }
+      } catch {}
       localStorage.clear();
       window.location.href = "../../Login/index.html";
     });
 });
+
 
 // =========================
 // DELETE HANDLER
@@ -1416,11 +1416,16 @@ function deletePost(type, id) {
   if (!token) return alert("Please log in first.");
 
   const urlMap = {
-    homepost: `http://localhost:5000/api/homeposts/${id}`,
-    birthday: `http://localhost:5000/api/birthdays/${id}`,
-    announcement: `http://localhost:5000/api/announcements/${id}`,
-    news: `http://localhost:5000/api/news/${id}`,
-    lostfound: `http://localhost:5000/api/lostfound/${id}`
+    homepost: `http://${API_BASE}
+/api/homeposts/${id}`,
+    birthday: `http://${API_BASE}
+/api/birthdays/${id}`,
+    announcement: `http://${API_BASE}
+/api/announcements/${id}`,
+    news: `http://${API_BASE}
+/api/news/${id}`,
+    lostfound: `http://${API_BASE}
+/api/lostfound/${id}`
   };
 
   fetch(urlMap[type], {
@@ -1533,7 +1538,8 @@ async function loadLikeCount(postId, postType) {
 
   try {
     const res = await fetch(
-      `http://localhost:5000/api/likes?postId=${postId}&postType=${postType}`,
+      `http://${API_BASE}
+/api/likes?postId=${postId}&postType=${postType}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -1555,7 +1561,7 @@ async function handleLike(id, type) {
   if (!token) return alert("Please log in first.");
 
   try {
-    const res = await fetch("http://localhost:5000/api/likes", {
+    const res = await fetch(`${API_BASE}/api/likes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1574,6 +1580,7 @@ async function handleLike(id, type) {
     alert("Error liking post");
   }
 }
+
 
 
 // =========================
@@ -1620,7 +1627,8 @@ async function loadComments(postId, postType, container) {
   try {
     // 🔥 FIXED — fetch comments from API using correct params
     const res = await fetch(
-      `http://localhost:5000/api/comments?postId=${postId}&postType=${postType}`,
+      `http://${API_BASE}
+/api/comments?postId=${postId}&postType=${postType}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -1671,15 +1679,16 @@ async function submitComment(postId, postType) {
   const content = input.value.trim();
   if (!content) return;
 
-  try {
-    const res = await fetch("http://localhost:5000/api/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ postId, postType, content })
-    });
+try {
+  const res = await fetch(`${API_BASE}/api/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ postId, postType, content }),
+  });
+
 
     const comment = await res.json();
     if (!res.ok) {
@@ -1746,10 +1755,10 @@ async function loadNotificationsA() {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  try {
-    const res = await fetch("http://localhost:5000/api/notifications", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+try {
+  const res = await fetch(`${API_BASE}/api/notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
     const items = await res.json();
 
@@ -1809,21 +1818,21 @@ async function markNotificationsAsRead() {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  try {
-    await fetch("http://localhost:5000/api/notifications/mark-read", {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+try {
+  await fetch(`${API_BASE}/api/notifications/mark-read`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
-    setNotifBadge(0);
+  setNotifBadge(0);
 
-    document
-      .querySelectorAll(".notif-item.unread")
-      .forEach((el) => el.classList.remove("unread"));
-  } catch (err) {
-    console.error("❌ Failed to mark notifications as read:", err);
-  }
+  document
+    .querySelectorAll(".notif-item.unread")
+    .forEach((el) => el.classList.remove("unread"));
+} catch (err) {
+  console.error("❌ Failed to mark notifications as read:", err);
 }
+
 
 loadNotificationsA();
 
@@ -1838,11 +1847,16 @@ async function openPostModal(id, type) {
   }
 
   const routes = {
-    homepost:    `http://localhost:5000/api/homeposts/${id}`,
-    birthday:    `http://localhost:5000/api/birthdays/${id}`,
-    announcement:`http://localhost:5000/api/announcements/${id}`,
-    news:        `http://localhost:5000/api/news/${id}`,
-    lostfound:   `http://localhost:5000/api/lostfound/${id}`,
+    homepost:    `http://${API_BASE}
+/api/homeposts/${id}`,
+    birthday:    `http://${API_BASE}
+/api/birthdays/${id}`,
+    announcement:`http://${API_BASE}
+/api/announcements/${id}`,
+    news:        `http://${API_BASE}
+/api/news/${id}`,
+    lostfound:   `http://${API_BASE}
+/api/lostfound/${id}`,
   };
 
   try {
@@ -2049,7 +2063,8 @@ if (searchInput) {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/users/search?q=${query}`, {
+      const res = await fetch(`http://${API_BASE}
+/api/users/search?q=${query}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -2094,7 +2109,9 @@ if (searchInput) {
 // =================================================
 // REAL-TIME SOCKET NOTIFICATION LISTENER
 // =================================================
-const socket = io("http://localhost:5000");
+const socket = io(API_BASE, {
+  transports: ["websocket"],
+});
 
 // register user
 setTimeout(() => {
@@ -2102,6 +2119,7 @@ setTimeout(() => {
     socket.emit("register_user", window.loggedInUser._id);
   }
 }, 1000);
+
 
 // ================================
 // WHEN REAL-TIME MESSAGE ARRIVES
@@ -2185,17 +2203,17 @@ async function submitReport(postId, postType, reason) {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/reports", {
+    const res = await fetch(`${API_BASE}/api/reports`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         postId,
         postType,
-        reason
-      })
+        reason,
+      }),
     });
 
     const data = await res.json();
@@ -2210,6 +2228,7 @@ async function submitReport(postId, postType, reason) {
     alert("❌ Failed to submit report.");
   }
 }
+
 // ===============================
 // REPORT POST (USER SIDE)
 // ===============================
@@ -2246,3 +2265,5 @@ document.addEventListener("click", async (e) => {
     alert(err.message || "Failed to submit report");
   }
 });
+
+}

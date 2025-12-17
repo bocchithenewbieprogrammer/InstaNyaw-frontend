@@ -6,7 +6,8 @@ let notifSocket;
 
 function initNotifSocket() {
   try {
-    notifSocket = io("http://localhost:5000", {
+    notifSocket = io(${API_BASE}
+", {
       transports: ["websocket", "polling"],
       path: "/socket.io/"
     });
@@ -75,7 +76,8 @@ async function loadNotifications(page = 1) {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/api/notifications?page=${page}&limit=20`, {
+    const res = await fetch(`http://${API_BASE}
+/api/notifications?page=${page}&limit=20`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (!res.ok) throw new Error("Failed to fetch notifications");
@@ -136,7 +138,8 @@ async function markAllNotificationsRead() {
   const token = localStorage.getItem("token");
   if (!token) return;
   try {
-    await fetch("http://localhost:5000/api/notifications/mark-all-read", {
+    await fetch(${API_BASE}
+/api/notifications/mark-all-read", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
     });
@@ -212,7 +215,8 @@ window.fetchUnreadCountAndSetBadge = async function() {
   const token = localStorage.getItem("token");
   if (!token) return;
   try {
-    const res = await fetch("http://localhost:5000/api/notifications/unread-count", {
+    const res = await fetch(${API_BASE}
+/api/notifications/unread-count", {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (!res.ok) return;

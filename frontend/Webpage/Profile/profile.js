@@ -54,7 +54,8 @@ async function loadNavbarProfile() {
   if (!token) return;
 
   try {
-    const res = await fetch("http://localhost:5000/api/auth/profile", {
+    const res = await fetch(${API_BASE}
+/api/auth/profile", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -157,7 +158,8 @@ saveBtn.addEventListener("click", async () => {
   if (!token) return window.location.href = "../../Login/index.html";
 
   try {
-    const res = await fetch("http://localhost:5000/api/profile/update", {
+    const res = await fetch(${API_BASE}
+/api/profile/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -210,7 +212,8 @@ profilePicInput.addEventListener("change", async () => {
     const base64 = e.target.result;
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:5000/api/profile/avatar", {
+    const res = await fetch(${API_BASE}
+/api/profile/avatar", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -270,7 +273,8 @@ async function loadProfile() {
   if (visitingUserId) return loadOtherProfile();
 
   try {
-    const res = await fetch("http://localhost:5000/api/profile/me", {
+    const res = await fetch(${API_BASE}
+/api/profile/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -291,7 +295,8 @@ async function loadProfile() {
 // ===============================
 async function loadOtherProfile() {
   try {
-    const res = await fetch(`http://localhost:5000/api/users/${visitingUserId}`, {
+    const res = await fetch(`http://${API_BASE}
+/api/users/${visitingUserId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
 
@@ -473,7 +478,8 @@ async function loadPostsByUser(userId, isOwner) {
     let posts = [];
 
     for (let ep of endpoints) {
-      const res = await fetch(`http://localhost:5000/api/${ep}`, {
+      const res = await fetch(`http://${API_BASE}
+/api/${ep}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

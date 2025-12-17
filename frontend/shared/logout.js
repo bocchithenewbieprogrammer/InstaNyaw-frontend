@@ -3,6 +3,11 @@ const API_BASE =
   location.hostname === "localhost"
     ? "http://localhost:5000"
     : "https://instanyaw-backend.onrender.com";
+ =
+  location.hostname === "localhost"
+    ? ${API_BASE}
+"
+    : "https://instanyaw-backend.onrender.com";
 // === Global Logout Handler (works on all pages and folders) ===
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
@@ -21,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
     try {
       // optional backend cleanup
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch(${API_BASE}
+/api/auth/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

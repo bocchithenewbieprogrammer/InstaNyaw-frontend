@@ -1,5 +1,6 @@
 // Messages/script.js – FINAL FULL VERSION
-// Uses: JWT in localStorage.token, backend at http://localhost:5000
+// Uses: JWT in localStorage.token, backend at http://${API_BASE}
+
 // 🔽 VERY TOP of the file
 const API_BASE =
   location.hostname === "localhost"
@@ -231,7 +232,8 @@ addMembersSubmit.addEventListener("click", async () => {
 
   async function loadUserProfile(id) {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}`, {
+      const res = await fetch(`http://${API_BASE}
+/api/users/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       if (!res.ok) return;
@@ -273,7 +275,8 @@ addMembersSubmit.addEventListener("click", async () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/users/search?q=${encodeURIComponent(
+        `http://${API_BASE}
+/api/users/search?q=${encodeURIComponent(
           query
         )}`,
         {
@@ -338,33 +341,47 @@ addMembersSubmit.addEventListener("click", async () => {
     });
   }
 
-  // ===============================
-  // API, TOKEN, SOCKET
-  // ===============================
-  const API_BASE = "http://localhost:5000/api/messages";
-  const tokenKey = "token";
-  const token = localStorage.getItem(tokenKey);
+// ===============================
+// API, TOKEN, SOCKET
+// ===============================
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
 
-  if (!token) {
-    console.warn("No token found in localStorage under key:", tokenKey);
-  }
+const tokenKey = "token";
+const token = localStorage.getItem(tokenKey);
 
-  // Heartbeat to mark user as online
-  setInterval(() => {
-    if (!token) return;
-    fetch("http://localhost:5000/api/users/ping", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-    }).catch(() => {});
-  }, 15000);
+if (!token) {
+  console.warn("No token found in localStorage under key:", tokenKey);
+}
 
-  const socket = io("http://localhost:5000", {
-    auth: { token },
-  });
+// ===============================
+// Heartbeat to mark user as online
+// ===============================
+setInterval(() => {
+  if (!token) return;
 
-  socket.on("connect", () => {
-    console.log("Socket connected:", socket.id);
-  });
+  fetch(`${API_BASE}/api/users/ping`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).catch(() => {});
+}, 15000);
+
+// ===============================
+// SOCKET.IO CONNECTION
+// ===============================
+const socket = io(API_BASE, {
+  auth: { token },
+  transports: ["websocket"],
+});
+
+socket.on("connect", () => {
+  console.log("Socket connected:", socket.id);
+});
+
 
   // ===============================
   // TOKEN → CURRENT USER ID
@@ -398,7 +415,8 @@ addMembersSubmit.addEventListener("click", async () => {
   async function loadUserStatus(userId) {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/users/${userId}/status`,
+        `http://${API_BASE}
+/api/users/${userId}/status`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -1214,7 +1232,8 @@ const res = await fetch(
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/messages/messages/${messageId}`,
+        `http://${API_BASE}
+/api/messages/messages/${messageId}`,
         {
           method: "DELETE",
           headers: {
@@ -1250,7 +1269,8 @@ const res = await fetch(
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/messages/conversations/${activeConversationId}`,
+        `http://${API_BASE}
+/api/messages/conversations/${activeConversationId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -1370,22 +1390,28 @@ const res = await fetch(
     });
   }
 
-  async function loadUsersAndRender() {
-    if (!token) return;
-    try {
-const res = await fetch("http://localhost:5000/api/users", {
-  headers: { Authorization: `Bearer ${token}` },
-});
-      if (!res.ok) return;
-      const users = await res.json();
+async function loadUsersAndRender() {
+  if (!token) return;
 
-      allUsersCache = Array.isArray(users) ? users : [];
-      console.log("allUsersCache now contains:", allUsersCache);
-      renderUsersList(users);
-    } catch (err) {
-      console.error("Error loading users:", err);
-    }
+  try {
+    const res = await fetch(`${API_BASE}/api/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) return;
+
+    const users = await res.json();
+    allUsersCache = Array.isArray(users) ? users : [];
+
+    console.log("allUsersCache now contains:", allUsersCache);
+    renderUsersList(users);
+  } catch (err) {
+    console.error("Error loading users:", err);
   }
+}
+
 
 
     // ===============================
