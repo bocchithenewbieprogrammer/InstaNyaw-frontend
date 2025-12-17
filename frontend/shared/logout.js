@@ -1,3 +1,8 @@
+// 🔽 VERY TOP of the file
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
 // === Global Logout Handler (works on all pages and folders) ===
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");

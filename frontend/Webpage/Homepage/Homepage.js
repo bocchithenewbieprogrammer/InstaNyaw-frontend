@@ -1,7 +1,9 @@
-// ===============================
-// API BASE
-// ===============================
-const API_BASE = "https://instanyaw-backend.onrender.com";
+// 🔽 VERY TOP of the file
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
+
 
 // ===============================
 // AUTH HEADERS (USER SIDE)

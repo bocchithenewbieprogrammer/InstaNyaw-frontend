@@ -1,5 +1,10 @@
 // Messages/script.js – FINAL FULL VERSION
 // Uses: JWT in localStorage.token, backend at http://localhost:5000
+// 🔽 VERY TOP of the file
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
 
 document.addEventListener("DOMContentLoaded", () => {
   // ===============================

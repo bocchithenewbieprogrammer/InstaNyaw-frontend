@@ -1,3 +1,9 @@
+// 🔽 VERY TOP of the file
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
+
 // frontend/AdminDashboard/user/adminuser.js
 
 // Assumes ../admin-auth.js defines: API_BASE, adminHeaders(), requireAdmin(), adminLogout(), logActivity()

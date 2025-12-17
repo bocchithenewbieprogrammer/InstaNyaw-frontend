@@ -1,3 +1,9 @@
+// 🔽 VERY TOP of the file
+const API_BASE =
+  location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://instanyaw-backend.onrender.com";
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registerForm");
 
@@ -23,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetchfetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
