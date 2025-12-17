@@ -23,6 +23,7 @@ const io = new Server(server, {
       "http://localhost:5500",
       "http://127.0.0.1:5501",
       "http://localhost:5501",
+      "https://bocchithenewbieprogrammer.github.io"
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
@@ -111,7 +112,10 @@ app.get("/", (req, res) => {
 // MONGODB
 // =======================
 mongoose
-  .connect(process.env.MONGO_URI)
+  mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
